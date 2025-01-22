@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <Navbar/>
-      <h1 className="text-3xl font-bold underline">hello</h1>
+      <h1 className="text-3xl font-bold underline">hello Mohit</h1>
     </>
   )
 }
