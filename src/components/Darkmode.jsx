@@ -8,6 +8,7 @@ function Darkmode() {
     const toggleDarkMode = () => {
         setDarkMode((prev) => {
         const newDarkMode = !prev;
+        console.log(darkMode)
         if (!newDarkMode) {
             document.documentElement.classList.add('dark');
         } else {
