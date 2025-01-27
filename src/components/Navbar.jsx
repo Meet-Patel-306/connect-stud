@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Darkmode from './Darkmode';
 import { Link } from 'react-router';
+import { useDispatch,useSelector } from 'react-redux';
+import {selectHome,selectNews,selectHackthone,selectConnect } from '../features/navbarSelectSlice'
 
 function Navbar(){
   const [isMenuOpen,setIsMenuOpen] = useState(false);
@@ -11,6 +13,13 @@ function Navbar(){
   const toggleIsDropDown = ()=>{
     setIsDropDown(!isDropDown);
   }
+  //link selector
+  const dispatch = useDispatch();
+  const isHome = useSelector((state) => state.navbarSelect.isHome);
+  const isNews = useSelector((state) => state.navbarSelect.isNews);
+  const isHackthone = useSelector((state) => state.navbarSelect.isHackthone);
+  const isConnect = useSelector((state) => state.navbarSelect.isConnect);
+
   return (
   <nav className="bg-white border-b-gray-900 border-b-2 dark:bg-gray-900">
     <div className="max-w-screen-xl flex flex-wrap items-center justify-between p-4">
@@ -49,15 +58,18 @@ function Navbar(){
     </div>
     {/* Menu */}
     <div className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${isMenuOpen?'block':'hidden'}`}>
-      <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:borde  r-gray-700">
         <li>
-          <Link to={'/'} className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500">Home</Link>
+          <Link to={'/'} className={`block py-2 px-3 ${ isHome ? "text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" : " text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"} `} onClick={()=> dispatch(selectHome())}>Home</Link>
         </li>
         <li>
-          <Link to={'/news'} className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">News</Link>
+          <Link to={'/news'} className={`block py-2 px-3 ${ isNews ? "text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" : " text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"} `} onClick={()=> dispatch(selectNews())}>News</Link>
         </li>
         <li>
-          <Link to={'/hackthone'} className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Hackthone</Link>
+          <Link to={'/hackthone'} className={`block py-2 px-3 ${ isHackthone ? "text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" : " text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"} `} onClick={()=> dispatch(selectHackthone())}>Hackthone</Link>
+        </li>
+        <li>
+          <Link to={'/connect'} className={`block py-2 px-3 ${ isConnect ? "text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" : " text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"} `} onClick={()=> dispatch(selectConnect())}>Connect</Link>
         </li>
       </ul>
     </div>
