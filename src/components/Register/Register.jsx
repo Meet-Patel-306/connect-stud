@@ -18,7 +18,7 @@ export default function Register() {
 
   return (
     <>
-      <form className="mx-5 md:mx-20 lg:mx-72">
+      <form className="mx-5 md:mx-20 lg:mx-72 my-5 dark:bg-gray-800 p-5 rounded-lg">
         <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div>
             {/* name */}
@@ -247,7 +247,7 @@ export default function Register() {
               <span className="rounded-r-lg dark:bg-gray-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-7 h-10 pr-2 text-blue-800 dark:text-blue-300 rounded-lg rounded-l-none border border-l-0 border-gray-300 dark:border-gray-600"
+                  className="w-7 h-10 pr-2 text-blue-800 dark:text-blue-300 rounded-lg rounded-l-none border border-l-0 border-gray-300 dark:border-gray-600 dark:fill-white"
                   viewBox="0 0 576 512"
                   onClick={() =>
                     setVisibilityEyePassword(!visibilityEyePassword)
@@ -261,7 +261,7 @@ export default function Register() {
               <span className="rounded-r-lg dark:bg-gray-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-7 h-10 pr-2 text-blue-800 dark:text-blue-300 rounded-lg rounded-l-none border border-l-0 border-gray-300 dark:border-gray-600"
+                  className="w-7 h-10 pr-2 text-blue-800 dark:text-blue-300 rounded-lg rounded-l-none border border-l-0 border-gray-300 dark:border-gray-600 dark:fill-white"
                   viewBox="0 0 640 512"
                   onClick={() =>
                     setVisibilityEyePassword(!visibilityEyePassword)
@@ -295,7 +295,7 @@ export default function Register() {
               <span className="rounded-r-lg dark:bg-gray-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-7 h-10 pr-2 text-blue-800 dark:text-blue-300 rounded-lg rounded-l-none border border-l-0 border-gray-300 dark:border-gray-600"
+                  className="w-7 h-10 pr-2 text-blue-800 dark:text-blue-300 rounded-lg rounded-l-none border border-l-0 border-gray-300 dark:border-gray-600 dark:fill-white"
                   viewBox="0 0 576 512"
                   onClick={() =>
                     setVisibilityEyeConfirmPassword(
@@ -311,7 +311,7 @@ export default function Register() {
               <span className="rounded-r-lg dark:bg-gray-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-7 h-10 pr-2 text-blue-800 dark:text-blue-300 rounded-lg rounded-l-none border border-l-0 border-gray-300 dark:border-gray-600"
+                  className="w-7 h-10 pr-2 text-blue-800 dark:text-blue-300 rounded-lg rounded-l-none border border-l-0 border-gray-300 dark:border-gray-600 dark:fill-white"
                   viewBox="0 0 640 512"
                   onClick={() =>
                     setVisibilityEyeConfirmPassword(
