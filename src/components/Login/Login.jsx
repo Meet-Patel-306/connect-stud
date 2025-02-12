@@ -5,47 +5,45 @@ export default function Login() {
   const [visibilityEyeLogin, setVisibilityEyeLogin] = useState(false);
   return (
     <>
-      <div class="bg-gray-50 font-[sans-serif] dark:bg-gray-900">
-        <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4 dark:bg-gray-900">
-          <div class="max-w-md w-full dark:bg-gray-900">
-            <a href="javascript:void(0)">
+      <div className="bg-gray-50 font-[sans-serif] dark:bg-gray-900">
+        <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4 dark:bg-gray-900">
+          <div className="max-w-md w-full dark:bg-gray-900">
               <img
                 src={Login1}
                 alt="ConnectStud"
-                class="w-600 mb-8 mx-auto block dark:text-white"
+                className="w-600 mb-8 mx-auto block dark:text-white"
               />
-            </a>
 
-            <div class="p-8 rounded-2xl bg-white shadow dark:bg-gray-800">
-              <h2 class="text-gray-800 text-center text-2xl font-bold dark:text-white">
+            <div className="p-8 rounded-2xl bg-white shadow dark:bg-gray-800">
+              <h2 className="text-gray-800 text-center text-2xl font-bold dark:text-white">
                 Login
               </h2>
-              <form class="mt-8 space-y-4">
+              <form className="mt-8 space-y-4">
                 <div>
-                  <label class="text-gray-800 text-sm mb-2 block dark:text-white">
+                  <label className="text-gray-800 text-sm mb-2 block dark:text-white">
                     User name
                   </label>
-                  <div class="flex items-center dark:bg-gray-700">
+                  <div className="flex items-center dark:bg-gray-700">
                     <input
                       name="username"
                       type="text"
                       required
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-10 "
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-10 "
                       placeholder="Enter user name"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label class="text-gray-800 text-sm mb-2 block dark:text-white">
+                  <label className="text-gray-800 text-sm mb-2 block dark:text-white">
                     Password
                   </label>
-                  <div class="flex items-center dark:bg-gray-700">
+                  <div className="flex items-center dark:bg-gray-700">
                     <input
                       name="password"
                       type={visibilityEyeLogin ? "text" : "password"}
                       required
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-10 rounded-r-none border-r-0"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-10 rounded-r-none border-r-0"
                       placeholder="Enter password"
                     />
 
@@ -81,15 +79,15 @@ export default function Login() {
                   </div>
                 </div>
 
-                <div class="flex flex-wrap items-center justify-between gap-4 dark:bg-gray-700">
-                  <div class="flex items-center dark:bg-gray-700"></div>
-                  <div class="text-sm dark:bg-gray-700"></div>
+                <div className="flex flex-wrap items-center justify-between gap-4 dark:bg-gray-700">
+                  <div className="flex items-center dark:bg-gray-700"></div>
+                  <div className="text-sm dark:bg-gray-700"></div>
                 </div>
 
-                <div class="!mt-8 dark:bg-gray-700">
+                <div className="!mt-8 dark:bg-gray-700">
                   <button
                     type="button"
-                    class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                    className="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                   >
                     Sign in
                   </button>
