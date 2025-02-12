@@ -34,6 +34,7 @@ export default function Register() {
               id="first_name"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="John"
+              autoComplete="off"
               onChange={(e) =>
                 dispatch(
                   getRegisterData({
@@ -58,6 +59,7 @@ export default function Register() {
               name="lastName"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Doe"
+              autoComplete="off"
               onChange={(e) =>
                 dispatch(
                   getRegisterData({
@@ -83,6 +85,7 @@ export default function Register() {
               name="email"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="john.doe@company.com"
+              autoComplete="off"
               onChange={(e) =>
                 dispatch(
                   getRegisterData({
@@ -108,6 +111,7 @@ export default function Register() {
               name="phoneNo"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="123-45-678"
+              autoComplete="off"
               pattern="[0-9]{5} [0-9]{5}"
               onChange={(e) =>
                 dispatch(
@@ -157,6 +161,7 @@ export default function Register() {
               name="country"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Country"
+              autoComplete="off"
               onChange={(e) =>
                 dispatch(
                   getRegisterData({
@@ -231,6 +236,7 @@ export default function Register() {
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\s]).{6,}"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-10 rounded-r-none border-r-0"
               placeholder="•••••••••"
+              autoComplete="off"
               onChange={(e) => {
                 dispatch(
                   getRegisterData({
@@ -344,6 +350,7 @@ export default function Register() {
                 name="biography"
                 className="block mb-6 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Write your Biography..."
+                autoComplete="off"
                 onChange={(e) =>
                   dispatch(
                     getRegisterData({
@@ -368,6 +375,7 @@ export default function Register() {
                     name="instagram"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="www.instagram.com/userid"
+                    autoComplete="off"
                     onChange={(e) =>
                       dispatch(
                         getRegisterData({
@@ -391,6 +399,7 @@ export default function Register() {
                     name="linkedin"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="www.linkedin.com/userid"
+                    autoComplete="off"
                     onChange={(e) =>
                       dispatch(
                         getRegisterData({
@@ -414,6 +423,7 @@ export default function Register() {
                     name="github"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="www.github.com/userid"
+                    autoComplete="off"
                     onChange={(e) =>
                       dispatch(
                         getRegisterData({
@@ -437,6 +447,7 @@ export default function Register() {
                     name="portfolio"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="www.website.com"
+                    autoComplete="off"
                     onChange={(e) =>
                       dispatch(
                         getRegisterData({
@@ -463,6 +474,7 @@ export default function Register() {
                 name="jobtitle"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="www.linkedin.com/userid"
+                autoComplete="off"
                 onChange={(e) =>
                   dispatch(
                     getRegisterData({
