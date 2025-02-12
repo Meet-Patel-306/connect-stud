@@ -44,13 +44,13 @@ export default function Parsonalinfo() {
             <h3 className="font-semibold h-2 mx-2 text-md text-gray-900 dark:text-white">
               Full Name
             </h3>
-            <h3 className="font-semibold h-2 mx-2 mt-4 mb-5 text-md text-slate-400">
+            <h3 className="font-semibold h-2 mx-2 mt-4 mb-8 text-md text-slate-400">
               Meet Patel
             </h3>
             <h3 className="font-semibold h-2 mx-2 text-md text-gray-900 dark:text-white">
               Biography
             </h3>
-            <h3 className="font-semibold  mx-2 mt-4 mb-5 text-md text-slate-400">
+            <h3 className="font-semibold  mx-2 mt-4 mb-8 text-md text-slate-400">
               I am Joseph McFall, a fervent explorer navigating the intricate
               landscapes of web design, driven by an unyielding passion for Web
               3 and Artificial Intelligence. From the early days of tinkering
@@ -61,7 +61,7 @@ export default function Parsonalinfo() {
             <h3 className="font-semibold h-2 mx-2 text-md text-gray-900 dark:text-white">
               Social
             </h3>
-            <h3 className="font-semibold h-2 mx-2 mt-5 mb-5 text-md text-slate-400">
+            <h3 className="font-semibold h-2 mx-2 mt-5 mb-8 text-md text-slate-400">
               <div className="flex">
                 <a className="mr-3" href="www.instagram.com">
                   <svg
@@ -120,7 +120,7 @@ export default function Parsonalinfo() {
             <h3 className="font-semibold h-2 mx-2 text-md text-gray-900 dark:text-white">
               Job Title
             </h3>
-            <h3 className="flex font-semibold h-2 mx-2 mt-4 mb-5 text-md text-slate-400">
+            <h3 className="flex font-semibold h-2 mx-2 mt-4 mb-8 text-md text-slate-400">
               <svg
                 className="h-5 w-5 mr-2"
                 xmlns="http://www.w3.org/2000/svg"
@@ -139,19 +139,19 @@ export default function Parsonalinfo() {
             <h3 className="font-semibold h-2 mx-2 text-md text-gray-900 dark:text-white">
               Email Adress
             </h3>
-            <h3 className="font-semibold h-2 mx-2 mt-4 mb-5 text-md text-slate-400">
+            <h3 className="font-semibold h-2 mx-2 mt-4 mb-8 text-md text-slate-400">
               abc@gmail.com
             </h3>
             <h3 className="font-semibold h-2 mx-2 text-md text-gray-900 dark:text-white">
               Phone Number
             </h3>
-            <h3 className="font-semibold h-2 mx-2 mt-4 mb-5 text-md text-slate-400">
+            <h3 className="font-semibold h-2 mx-2 mt-4 mb-8 text-md text-slate-400">
               1234567890
             </h3>
             <h3 className="font-semibold h-2 mx-2 text-md text-gray-900 dark:text-white">
               Skill
             </h3>
-            <h3 className="font-semibold  mx-2 mt-4 mb-5 text-md text-slate-400">
+            <h3 className="font-semibold  mx-2 mt-4 mb-8 text-md text-slate-400">
               <div className="flex flex-wrap">
                 <span className="bg-gray-100 text-gray-800 text-xs font-medium me-2 my-1 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-gray-300">
                   HTML
@@ -224,7 +224,7 @@ export default function Parsonalinfo() {
             <h3 className="font-semibold h-2 mx-2 text-md text-gray-900 dark:text-white">
               Languages
             </h3>
-            <h3 className="font-semibold h-2 mx-2 mt-4 mb-5 text-md text-slate-400">
+            <h3 className="font-semibold h-2 mx-2 mt-4 mb-8 text-md text-slate-400">
               English,Hindi,Gujrati
             </h3>
           </div>
