@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <Profile />
+      <Profile email={"meet@gmail.com"} />
     </>
   );
 }

@@ -1,7 +1,14 @@
 import { useState } from "react";
 import Popover from "./Popover";
 
-export default function Generalinfo() {
+export default function Generalinfo({
+  firstName,
+  jobtitle,
+  country,
+  dateOfBirth,
+  primaryLanguage,
+  gender,
+}) {
   const [openPopover, setOpenPopover] = useState(false);
   return (
     <>
@@ -44,13 +51,13 @@ export default function Generalinfo() {
           {/* name and work name */}
           <div className="my-11">
             <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-md dark:bg-blue-900 dark:text-blue-300">
-              meet
+              {firstName}
             </span>
             <h1 className="font-bold text-2xl text-gray-900 dark:text-white">
               meet
             </h1>
             <h3 className="font-normal mt-2 text-xl dark:text-gray-400">
-              Web Devloper
+              {jobtitle}
             </h3>
           </div>
         </div>
@@ -58,49 +65,41 @@ export default function Generalinfo() {
         <div className="grid grid-flow-col lg:grid-rows-2 lg:grid-cols-2 md:grid-rows-2 md:grid-cols-2 grid-rows-4 grid-cols-1 p-4 bg-white dark:bg-gray-800 border-0 rounded-xl my-4 ml-2">
           {/* Country */}
           <div className="flex-col justify-center mr-2">
-            <label className="text-sm block text-gray-900 dark:text-white font-medium ml-2 mb-2 ">
-              Country
-            </label>
+            <label className="profile-label-tag">Country</label>
             <input
-              className="text-sm text-gray-900 dark:text-white font-medium rounded-lg bg-gray-50 dark:bg-gray-700 p-2 mt-0 w-full"
+              className="profile-input-tag"
               type="text"
-              value={"India"}
+              value={country}
               readOnly
             />
           </div>
           {/* Date of brith */}
           <div className="flex-col justify-center mr-2">
-            <label className="text-sm block text-gray-900 dark:text-white font-medium ml-2 mb-2 ">
-              Date of brith
-            </label>
+            <label className="profile-label-tag">Date of brith</label>
             <input
-              className="text-sm text-gray-900 dark:text-white font-medium rounded-lg bg-gray-50 dark:bg-gray-700 p-2 mt-0 w-full"
-              type="date"
-              value={"2006-06-30"}
+              className="profile-input-tag"
+              type="text"
+              value={dateOfBirth}
               readOnly
             />
           </div>
           {/* Language */}
           <div className="flex-col justify-center mr-2">
-            <label className="text-sm block text-gray-900 dark:text-white font-medium ml-2 mb-2 ">
-              Language
-            </label>
+            <label className="profile-label-tag">Language</label>
             <input
-              className="text-sm text-gray-900 dark:text-white font-medium rounded-lg bg-gray-50 dark:bg-gray-700 p-2 mt-0 w-full"
+              className="profile-input-tag"
               type="text"
-              value={"Gujarati"}
+              value={primaryLanguage}
               readOnly
             />
           </div>
           {/* Gender */}
           <div className="flex-col justify-center mr-2">
-            <label className="text-sm block text-gray-900 dark:text-white font-medium ml-2 mb-2 ">
-              Gender
-            </label>
+            <label className="profile-label-tag">Gender</label>
             <input
-              className="text-sm text-gray-900 dark:text-white font-medium rounded-lg bg-gray-50 dark:bg-gray-700 p-2 mt-0 w-full"
+              className="profile-input-tag"
               type="text"
-              value={"Male"}
+              value={gender}
               readOnly
             />
           </div>
