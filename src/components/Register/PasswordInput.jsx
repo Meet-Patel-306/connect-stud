@@ -23,7 +23,7 @@ export default function PasswordInput({
           htmlFor="password"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          Password
+          Password<span className="text-red-500 text-sm">*</span>
         </label>
         <div className="flex items-center">
           <input
@@ -62,7 +62,7 @@ export default function PasswordInput({
           htmlFor="confirm_password"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          Confirm password
+          Confirm password<span className="text-red-500 text-sm">*</span>
         </label>
         <div className="flex items-center">
           <input

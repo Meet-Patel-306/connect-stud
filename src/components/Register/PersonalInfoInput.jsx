@@ -9,11 +9,12 @@ export default function PersonalInfoInput() {
       <div className="grid gap-6 mb-6 md:grid-cols-2">
         <div>
           {/* name */}
+          
           <label
             htmlFor="first_name"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            First name
+            First name<span className="text-red-500 text-sm">*</span>
           </label>
           <input
             type="text"
@@ -38,7 +39,7 @@ export default function PersonalInfoInput() {
             htmlFor="last_name"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Last name
+            Last name<span className="text-red-500 text-sm">*</span>
           </label>
           <input
             type="text"
@@ -64,7 +65,7 @@ export default function PersonalInfoInput() {
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Email address
+            Email address<span className="text-red-500 text-sm">*</span>
           </label>
           <input
             type="email"
@@ -90,7 +91,7 @@ export default function PersonalInfoInput() {
             htmlFor="phone"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Phone number
+            Phone number<span className="text-red-500 text-sm">*</span>
           </label>
           <input
             type="tel"
@@ -117,7 +118,7 @@ export default function PersonalInfoInput() {
             htmlFor="dob"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Date Of Birth
+            Date Of Birth<span className="text-red-500 text-sm">*</span>
           </label>
           <input
             type="date"
@@ -140,7 +141,7 @@ export default function PersonalInfoInput() {
             htmlFor="country"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Country
+            Country<span className="text-red-500 text-sm">*</span>
           </label>
           <input
             type="text"
