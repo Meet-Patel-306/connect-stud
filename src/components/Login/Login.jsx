@@ -1,98 +1,131 @@
 import { useState } from "react";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { loginRoutes } from "../../APIs/APIRoutes.js";
+import OpenEyeSvg from "../../svgs/OpenEyeSvg.jsx";
+import CloseEyeSvg from "../../svgs/CloseEyeSvg.jsx";
 
 import Login1 from "../../../public/Login.jpg";
 export default function Login() {
   const [visibilityEyeLogin, setVisibilityEyeLogin] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = async (e) => {
+    // e.preventDefault()
+    try {
+      const res = await axios.post(loginRoutes, { email, password });
+      console.log(res);
+      toast.success(res.data.message, { position: "top-right" });
+    } catch (err) {
+      toast.error(err.response.data.message);
+    }
+  };
   return (
     <>
-      <div class="bg-gray-50 font-[sans-serif] dark:bg-gray-900">
-        <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4 dark:bg-gray-900">
-          <div class="max-w-md w-full dark:bg-gray-900">
-            <a href="javascript:void(0)">
-              <img
-                src={Login1}
-                alt="ConnectStud"
-                class="w-600 mb-8 mx-auto block dark:text-white"
-              />
-            </a>
+      <ToastContainer pauseOnHover={false} autoClose={3000} />
+      <div className="bg-gray-50 font-[sans-serif] dark:bg-gray-900">
+        <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4 dark:bg-gray-900">
+          <div className="max-w-md w-full dark:bg-gray-900">
+            <img
+              src={Login1}
+              alt="ConnectStud"
+              className="w-600 mb-8 mx-auto block dark:text-white"
+            />
 
-            <div class="p-8 rounded-2xl bg-white shadow dark:bg-gray-800">
-              <h2 class="text-gray-800 text-center text-2xl font-bold dark:text-white">
+            <div className="p-8 rounded-2xl bg-white shadow dark:bg-gray-800">
+              <h2 className="text-gray-800 text-center text-2xl font-bold dark:text-white">
                 Login
               </h2>
-              <form class="mt-8 space-y-4">
+              <form className="mt-8 space-y-4">
                 <div>
-                  <label class="text-gray-800 text-sm mb-2 block dark:text-white">
-                    User name
+                  <label
+                    htmlFor="email"
+                    className="text-gray-800 text-sm mb-2 block dark:text-white"
+                  >
+                    Email
                   </label>
-                  <div class="flex items-center dark:bg-gray-700">
+                  <div className="flex items-center dark:bg-gray-700">
                     <input
-                      name="username"
+                      name="email"
                       type="text"
                       required
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-10 "
+                      className="input-tag "
                       placeholder="Enter user name"
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label class="text-gray-800 text-sm mb-2 block dark:text-white">
+                  <label
+                    htmlFor="password"
+                    className="text-gray-800 text-sm mb-2 block dark:text-white"
+                  >
                     Password
                   </label>
-                  <div class="flex items-center dark:bg-gray-700">
+                  <div className="flex items-center dark:bg-gray-700">
                     <input
                       name="password"
                       type={visibilityEyeLogin ? "text" : "password"}
                       required
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-10 rounded-r-none border-r-0"
-                      placeholder="Enter password"
+                      className="input-passowrd-tag"
+                      onChange={(e) => setPassword(e.target.value)}
                     />
 
                     {/* visible eye */}
                     {visibilityEyeLogin && (
-                      <span className="rounded-r-lg dark:bg-gray-700">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-7 h-10 pr-2 text-blue-800 dark:text-blue-300 rounded-lg rounded-l-none border border-l-0 border-gray-300 dark:border-gray-600 dark:fill-white"
-                          viewBox="0 0 576 512"
-                          onClick={() =>
-                            setVisibilityEyeLogin(!visibilityEyeLogin)
-                          }
-                        >
-                          <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
-                        </svg>
-                      </span>
+                      <OpenEyeSvg
+                        onClick={() =>
+                          setVisibilityEyeLogin(!visibilityEyeLogin)
+                        }
+                      />
                     )}
                     {!visibilityEyeLogin && (
-                      <span className="rounded-r-lg dark:bg-gray-700">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-7 h-10 pr-2 text-blue-800 dark:text-blue-300 rounded-lg rounded-l-none border border-l-0 border-gray-300 dark:border-gray-600 dark:fill-white"
-                          viewBox="0 0 640 512"
-                          onClick={() =>
-                            setVisibilityEyeLogin(!visibilityEyeLogin)
-                          }
-                        >
-                          <path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z" />
-                        </svg>
-                      </span>
+                      <CloseEyeSvg
+                        onClick={() =>
+                          setVisibilityEyeLogin(!visibilityEyeLogin)
+                        }
+                      />
                     )}
                   </div>
                 </div>
 
-                <div class="flex flex-wrap items-center justify-between gap-4 dark:bg-gray-700">
-                  <div class="flex items-center dark:bg-gray-700"></div>
-                  <div class="text-sm dark:bg-gray-700"></div>
+                <div className="flex flex-wrap items-center justify-between gap-4 dark:bg-gray-700">
+                  <div className="flex items-center dark:bg-gray-700"></div>
+                  <div className="text-sm dark:bg-gray-700"></div>
                 </div>
 
-                <div class="!mt-8 dark:bg-gray-700">
+                <div className="!mt-8 dark:bg-gray-700">
                   <button
                     type="button"
-                    class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                    className="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                    onClick={handleLogin}
                   >
                     Sign in
                   </button>
+                </div>
+                <div className="my-4 flex items-center gap-4">
+                  <hr className="w-full border-slate-300" />
+                  <p className="text-sm text-slate-800 text-center dark:text-white">
+                    or
+                  </p>
+                  <hr className="w-full border-slate-300" />
+                </div>
+
+                {/* Google login */}
+                <div className="flex items-center justify-center dark:bg-gray-800">
+                  <a
+                    href="http://localhost:3000/auth/google"
+                    className="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+                  >
+                    <img
+                      className="w-6 h-6"
+                      src="https://www.svgrepo.com/show/475656/google-color.svg"
+                      loading="lazy"
+                      alt="google logo"
+                    />
+                    <span>Login with Google</span>
+                  </a>
                 </div>
               </form>
             </div>

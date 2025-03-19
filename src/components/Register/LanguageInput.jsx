@@ -25,7 +25,7 @@ export default function LanguageInput() {
           name="primaryLanguage"
           id="primaryLanguage"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="john.doe@company.com"
+          placeholder="English"
           onChange={(e) =>
             dispatch(
               getRegisterData({ name: e.target.name, value: e.target.value })
@@ -48,7 +48,7 @@ export default function LanguageInput() {
             name="languages"
             id="languages"
             className="block w-full px-2 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search Mockups, Logos..."
+            placeholder="Gujarati,Korean,Marathi,Mandarin,Tamil,..."
             value={languageValue}
             onChange={(e) => setLanguageValue(e.target.value)}
           />
