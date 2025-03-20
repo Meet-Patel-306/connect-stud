@@ -1,14 +1,7 @@
 const passport = require("passport");
 
-const router = require("express").Router();
-
-router.get(
-  "/",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
-
-router.get("/callback", (req, res, next) => {
-  passport.authenticate("google", (err, user, info) => {
+const localUserLogin = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
     if (err) {
       return res
         .status(500)
@@ -26,13 +19,9 @@ router.get("/callback", (req, res, next) => {
           .status(500)
           .json({ authorize: false, message: "Login Failed" });
       }
-      return res.json({
-        authorize: true,
-        message: "Login successful",
-        user: { _id: user._id, email: user.email },
-      });
+      return res.json({ message: "Login" });
     });
   })(req, res, next);
-});
+};
 
-module.exports = router;
+module.exports = localUserLogin;

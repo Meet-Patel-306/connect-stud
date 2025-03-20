@@ -1,9 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getRegisterData } from "../../features/registerDataSlice.js";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { useState } from "react";
 
 export default function PersonalInfoInput() {
   // get register data slice
   const dispatch = useDispatch();
+  const [phone, setPhone] = useState("");
   return (
     <>
       <div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -87,28 +91,21 @@ export default function PersonalInfoInput() {
         <div>
           {/* phone no */}
           <label
-            htmlFor="phone"
+            htmlFor=""
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Phone number
+            Phone No
           </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phoneNo"
-            className="input-tag"
-            placeholder="123-45-678"
-            autoComplete="off"
-            pattern="[0-9]{5} [0-9]{5}"
-            onChange={(e) =>
-              dispatch(
-                getRegisterData({
-                  name: e.target.name,
-                  value: e.target.value,
-                })
-              )
-            }
-            required
+          <PhoneInput
+            country={"us"}
+            containerClass="!w-auto"
+            inputClass="input-tag !w-full"
+            buttonClass="bg-white border-r border-gray-300"
+            value={phone}
+            onChange={(phone) => {
+              setPhone(phone);
+              dispatch(getRegisterData({ name: "phoneNo", value: phone }));
+            }}
           />
         </div>
         <div>

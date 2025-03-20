@@ -10,6 +10,7 @@ import Login from "./components/Login/Login.jsx";
 import "./index.css";
 import { store } from "./app/store.js";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <ToastContainer autoClose={3000} />
     </BrowserRouter>
   </Provider>
 );

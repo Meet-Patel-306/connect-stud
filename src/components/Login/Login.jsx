@@ -1,28 +1,36 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import { loginRoutes } from "../../APIs/APIRoutes.js";
 import OpenEyeSvg from "../../svgs/OpenEyeSvg.jsx";
 import CloseEyeSvg from "../../svgs/CloseEyeSvg.jsx";
-
 import Login1 from "../../../public/Login.jpg";
+
 export default function Login() {
   const [visibilityEyeLogin, setVisibilityEyeLogin] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
-    // e.preventDefault()
     try {
-      const res = await axios.post(loginRoutes, { email, password });
-      console.log(res);
-      toast.success(res.data.message, { position: "top-right" });
+      const res = await axios.post(
+        loginRoutes,
+        { email, password },
+        { withCredentials: true }
+      );
+      toast.success(res.data.message || "Login Successfully", {
+        position: "top-right",
+      });
+      navigate("/");
     } catch (err) {
-      toast.error(err.response.data.message);
+      toast.error(err.response?.data?.message || "No Login Failed");
     }
   };
   return (
     <>
-      <ToastContainer pauseOnHover={false} autoClose={3000} />
+      <ToastContainer autoClose={3000} />
       <div className="bg-gray-50 font-[sans-serif] dark:bg-gray-900">
         <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4 dark:bg-gray-900">
           <div className="max-w-md w-full dark:bg-gray-900">
