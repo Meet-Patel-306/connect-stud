@@ -14,7 +14,7 @@ export default function PersonalInfoInput() {
             htmlFor="first_name"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            First name<span className="text-red-500 text-sm">*</span>
+            First name<span className="require-input">*</span>
           </label>
           <input
             type="text"
@@ -39,7 +39,7 @@ export default function PersonalInfoInput() {
             htmlFor="last_name"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Last name<span className="text-red-500 text-sm">*</span>
+            Last name<span className="require-input">*</span>
           </label>
           <input
             type="text"
@@ -65,7 +65,7 @@ export default function PersonalInfoInput() {
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Email address<span className="text-red-500 text-sm">*</span>
+            Email address<span className="require-input">*</span>
           </label>
           <input
             type="email"
@@ -91,7 +91,7 @@ export default function PersonalInfoInput() {
             htmlFor="phone"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Phone number<span className="text-red-500 text-sm">*</span>
+            Phone number<span className="require-input">*</span>
           </label>
           <input
             type="tel"
@@ -100,7 +100,7 @@ export default function PersonalInfoInput() {
             className="input-tag"
             placeholder="123-45-678"
             autoComplete="off"
-            pattern="[0-9]{5} [0-9]{5}"
+            pattern="[0-9]{10}"
             onChange={(e) =>
               dispatch(
                 getRegisterData({
@@ -118,7 +118,7 @@ export default function PersonalInfoInput() {
             htmlFor="dob"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Date Of Birth<span className="text-red-500 text-sm">*</span>
+            Date Of Birth<span className="require-input">*</span>
           </label>
           <input
             type="date"
@@ -141,7 +141,7 @@ export default function PersonalInfoInput() {
             htmlFor="country"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Country<span className="text-red-500 text-sm">*</span>
+            Country<span className="require-input">*</span>
           </label>
           <input
             type="text"

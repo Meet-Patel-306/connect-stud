@@ -18,7 +18,7 @@ export default function LanguageInput() {
           htmlFor="primaryLanguage"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          Primary Language<span className="text-red-500 text-sm">*</span>
+          Primary Language<span className="require-input">*</span>
         </label>
         <input
           type="text"
