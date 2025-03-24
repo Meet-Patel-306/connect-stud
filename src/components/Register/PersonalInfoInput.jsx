@@ -17,7 +17,7 @@ export default function PersonalInfoInput() {
             htmlFor="first_name"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            First name
+            First name<span className="required-input">*</span>
           </label>
           <input
             type="text"
@@ -42,7 +42,7 @@ export default function PersonalInfoInput() {
             htmlFor="last_name"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Last name
+            Last name<span className="required-input">*</span>
           </label>
           <input
             type="text"
@@ -68,7 +68,7 @@ export default function PersonalInfoInput() {
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Email address
+            Email address<span className="required-input">*</span>
           </label>
           <input
             type="email"
@@ -94,7 +94,7 @@ export default function PersonalInfoInput() {
             htmlFor=""
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Phone No
+            Phone No<span className="required-input">*</span>
           </label>
           <PhoneInput
             country={"us"}
@@ -114,7 +114,7 @@ export default function PersonalInfoInput() {
             htmlFor="dob"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Date Of Birth
+            Date Of Birth<span className="required-input">*</span>
           </label>
           <input
             type="date"
@@ -137,7 +137,7 @@ export default function PersonalInfoInput() {
             htmlFor="country"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Country
+            Country<span className="required-input">*</span>
           </label>
           <input
             type="text"

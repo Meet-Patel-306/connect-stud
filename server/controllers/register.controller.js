@@ -18,32 +18,18 @@ const registerUser = async (req, res) => {
     if (existingUsername) {
       userUserName += Math.floor(Math.random() * 10000);
     }
+
+    const password = userData.password;
+    delete userData.password;
+
     // Create a new user instance
     const newUser = new User({
       username: userUserName,
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      email: userData.email,
-      phoneNo: userData.phoneNo,
-      dateOfBirth: userData.dateOfBirth,
-      country: userData.country,
-      gender: userData.gender,
-      jobtitle: userData.jobtitle,
-      biography: userData.biography,
-      primaryLanguage: userData.primaryLanguage,
-      languages: userData.languages,
-      instagram: userData.instagram,
-      linkedin: userData.linkedin,
-      github: userData.github,
-      portfolio: userData.portfolio,
-      skills: userData.skills,
-      colleges: userData.colleges,
-      experiences: userData.experiences,
+      ...userData,
     });
     // Register the user (handles password hashing)
-    await User.register(newUser, userData.password);
+    await User.register(newUser, password);
     console.log("User registered successfully.");
-    delete userData.password;
     res.status(201).json({ message: "Register Successfully" });
   } catch (err) {
     console.error(err);

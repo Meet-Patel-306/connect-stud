@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getRegisterData } from "../../features/registerDataSlice.js";
 
 export default function skillsInput() {
@@ -8,7 +8,6 @@ export default function skillsInput() {
 
   // get register data slice
   const dispatch = useDispatch();
-  const registerData = useSelector((state) => state.registerData);
   useEffect(() => {
     dispatch(getRegisterData({ name: "skills", value: skills }));
   }, [skills]);

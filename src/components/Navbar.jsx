@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Darkmode from "./Darkmode";
-import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -28,11 +27,13 @@ function Navbar() {
   const isNews = useSelector((state) => state.navbarSelect.isNews);
   const isHackathon = useSelector((state) => state.navbarSelect.isHackathon);
   const isConnect = useSelector((state) => state.navbarSelect.isConnect);
+  const userData = useSelector((state) => state.userData);
 
   const navigate = useNavigate();
   useEffect(() => {
     const fetchUser = async () => {
       try {
+        console.log("navbar api call");
         const res = await axios.get(profileAuthRoutes, {
           withCredentials: true,
         });
@@ -46,7 +47,11 @@ function Navbar() {
         }
       }
     };
-    fetchUser();
+    if (userData == null) {
+      console.log(userData);
+      fetchUser();
+      dispatch(setUserData({ user: "meet" }));
+    }
   }, []);
 
   return (

@@ -1,6 +1,6 @@
 import Navbar from "../Navbar";
 import HackathonCard from "./HackathonCard";
-import HackathonForm from "./HackathonForm";
+import HackathonForm from "./RegisterHackathon/HackathonForm.jsx";
 export default function Hackthone() {
   return (
     <>
