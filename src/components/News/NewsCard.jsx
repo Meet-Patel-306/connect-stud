@@ -15,9 +15,9 @@ const NewsCard = () => {
                     {/* Text & Author Block */}
                     <div className="p-4 flex flex-col justify-between w-full lg:w-2/3">
                     <div>
-                        <span className="bg-pink-100 text-pink-600 text-xs px-2 py-1 rounded-full">
-                            Health
-                        </span>
+                    <span className="bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 text-xs px-2 py-1 rounded-full">
+                                Health
+                            </span>
                         <p className="text-gray-500 text-sm mt-1">23 Aug 2023</p>
                         <h3 className="text-lg font-semibold mt-2">
                             This is the best Blog card for your business template.
