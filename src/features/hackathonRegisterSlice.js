@@ -8,6 +8,7 @@ const initialState = {
   startDate: "",
   endDate: "",
   type: "",
+  subjects: "",
   teamSize: "",
   winner: "",
   firstRunnerUp: "",

@@ -1,111 +1,4 @@
-@-moz-keyframes rocket-movement {
-  100% {
-    -moz-transform: translate(1200px, -600px);
-  }
-}
-@-webkit-keyframes rocket-movement {
-  100% {
-    -webkit-transform: translate(1200px, -600px);
-  }
-}
-@keyframes rocket-movement {
-  100% {
-    transform: translate(1200px, -600px);
-  }
-}
-@-moz-keyframes spin-earth {
-  100% {
-    -moz-transform: rotate(-360deg);
-    transition: transform 20s;
-  }
-}
-@-webkit-keyframes spin-earth {
-  100% {
-    -webkit-transform: rotate(-360deg);
-    transition: transform 20s;
-  }
-}
-@keyframes spin-earth {
-  100% {
-    -webkit-transform: rotate(-360deg);
-    transform: rotate(-360deg);
-    transition: transform 20s;
-  }
-}
-
-@-moz-keyframes move-astronaut {
-  100% {
-    -moz-transform: translate(-160px, -160px);
-  }
-}
-@-webkit-keyframes move-astronaut {
-  100% {
-    -webkit-transform: translate(-160px, -160px);
-  }
-}
-@keyframes move-astronaut {
-  100% {
-    -webkit-transform: translate(-160px, -160px);
-    transform: translate(-160px, -160px);
-  }
-}
-@-moz-keyframes rotate-astronaut {
-  100% {
-    -moz-transform: rotate(-720deg);
-  }
-}
-@-webkit-keyframes rotate-astronaut {
-  100% {
-    -webkit-transform: rotate(-720deg);
-  }
-}
-@keyframes rotate-astronaut {
-  100% {
-    -webkit-transform: rotate(-720deg);
-    transform: rotate(-720deg);
-  }
-}
-
-@-moz-keyframes glow-star {
-  40% {
-    -moz-opacity: 0.3;
-  }
-  90%,
-  100% {
-    -moz-opacity: 1;
-    -moz-transform: scale(1.2);
-  }
-}
-@-webkit-keyframes glow-star {
-  40% {
-    -webkit-opacity: 0.3;
-  }
-  90%,
-  100% {
-    -webkit-opacity: 1;
-    -webkit-transform: scale(1.2);
-  }
-}
-@keyframes glow-star {
-  40% {
-    -webkit-opacity: 0.3;
-    opacity: 0.3;
-  }
-  90%,
-  100% {
-    -webkit-opacity: 1;
-    opacity: 1;
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-    border-radius: 999999px;
-  }
-}
-
-.spin-earth-on-hover {
-  transition: ease 200s !important;
-  transform: rotate(-3600deg) !important;
-}
-
+/* General Reset and Base Styles */
 html,
 body {
   margin: 0;
@@ -113,82 +6,77 @@ body {
   height: 100%;
   font-family: "Dosis", sans-serif;
   font-weight: 300;
-  -webkit-user-select: none; /* Safari 3.1+ */
-  -moz-user-select: none; /* Firefox 2+ */
-  -ms-user-select: none; /* IE 10+ */
-  user-select: none; /* Standard syntax */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.stars {
-  background-color: purple;
-  background-size: cover;
-  height: 100vh; /* Full screen height */
-  width: 100vw; /* Full screen width */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/* Background and Stars */
 .bg-purple {
-  background: url(http://salehriaz.com/404Page/img/bg_purple.png);
-  background-repeat: repeat-x;
+  background: url(http://salehriaz.com/404Page/img/bg_purple.png) repeat-x;
   background-size: cover;
   background-position: left top;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
+.stars {
+  background: url(http://salehriaz.com/404Page/img/overlay_stars.svg) repeat;
+  background-size: contain;
+  background-position: left top;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Navbar */
 .custom-navbar {
-  padding-top: 15px;
+  padding-top: 1vw;
+  width: 100%;
+  text-align: center;
 }
 
 .brand-logo {
-  margin-left: 25px;
-  margin-top: 5px;
+  margin: 0.5vw 0 0 2vw;
   display: inline-block;
 }
 
-.navbar-links {
-  display: inline-block;
-  float: right;
-  margin-right: 15px;
-  text-transform: uppercase;
+.logo-img {
+  width: clamp(60px, 8vw, 80px); /* Responsive logo size */
 }
 
-.btn-request {
-  padding: 10px 25px;
-  border: 1px solid #ffcb39;
-  border-radius: 100px;
-  font-weight: 400;
+/* Central Body (404 Image and Button) */
+.central-body {
+  padding: clamp(10%, 15%, 20%) 5% 5% 5%;
+  text-align: center;
 }
 
-.btn-request:hover {
-  background-color: #ffcb39;
-  color: #fff;
-  transform: scale(1.05);
-  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
+.image-404 {
+  width: clamp(150px, 40vw, 300px); /* Responsive 404 image */
+  position: relative;
+  margin-bottom: 20px;
+  z-index: 100;
+  pointer-events: none;
 }
 
 .btn-go-home {
   position: relative;
   z-index: 200;
-  margin: 15px auto;
-  width: 100px;
-  padding: 10px 15px;
+  margin: 1.5vw auto;
+  padding: 1vw 1.5vw;
+  width: clamp(80px, 10vw, 120px);
   border: 1px solid #ffcb39;
   border-radius: 100px;
   font-weight: 400;
-  display: block;
   color: white;
   text-align: center;
   text-decoration: none;
-  letter-spacing: 2px;
-  font-size: 11px;
-
-  -webkit-transition: all 0.3s ease-in;
-  -moz-transition: all 0.3s ease-in;
-  -ms-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
+  letter-spacing: 0.2vw;
+  font-size: clamp(10px, 1.2vw, 14px);
   transition: all 0.3s ease-in;
 }
 
@@ -196,15 +84,10 @@ body {
   background-color: #ffcb39;
   color: #fff;
   transform: scale(1.05);
-  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1.5vw 1.5vw rgba(0, 0, 0, 0.1);
 }
 
-.central-body {
-  /*    width: 100%;*/
-  padding: 17% 5% 10% 5%;
-  text-align: center;
-}
-
+/* Objects (Rocket, Earth, Moon, Astronaut) */
 .objects img {
   z-index: 90;
   pointer-events: none;
@@ -213,62 +96,49 @@ body {
 .object_rocket {
   z-index: 95;
   position: absolute;
-  transform: translateX(-50px);
   top: 75%;
-  pointer-events: none;
+  width: clamp(30px, 8vw, 50px);
+  transform: translateX(-5vw);
   animation: rocket-movement 200s linear infinite both running;
 }
 
-.object_earth {
+.earth-moon {
   position: absolute;
   top: 20%;
   left: 15%;
-  z-index: 90;
-  /*    animation: spin-earth 100s infinite linear both;*/
+}
+
+.object_earth {
+  width: clamp(60px, 12vw, 100px);
 }
 
 .object_moon {
+  width: clamp(40px, 8vw, 80px);
   position: absolute;
-  top: 12%;
-  left: 25%;
-  /*
-    transform: rotate(0deg);
-    transition: transform ease-in 99999999999s;
-*/
-}
-
-.object_astronaut {
-  animation: rotate-astronaut 200s infinite linear both alternate;
+  top: -2vw;
+  left: 5vw;
 }
 
 .box_astronaut {
-  z-index: 110 !important;
+  z-index: 110;
   position: absolute;
   top: 60%;
   right: 20%;
-  will-change: transform;
   animation: move-astronaut 50s infinite linear both alternate;
 }
 
-.image-404 {
-  position: relative;
-  z-index: 100;
-  pointer-events: none;
+.object_astronaut {
+  width: clamp(80px, 15vw, 140px);
+  animation: rotate-astronaut 200s infinite linear both alternate;
 }
 
-.stars {
-  background: url(http://salehriaz.com/404Page/img/overlay_stars.svg);
-  background-repeat: repeat;
-  background-size: contain;
-  background-position: left top;
-}
-
+/* Glowing Stars */
 .glowing_stars .star {
   position: absolute;
   border-radius: 100%;
   background-color: #fff;
-  width: 3px;
-  height: 3px;
+  width: 0.3vw;
+  height: 0.3vw;
   opacity: 0.3;
   will-change: opacity;
 }
@@ -299,24 +169,121 @@ body {
   animation: glow-star 2s infinite ease-in-out alternate 9s;
 }
 
-/* @media only screen and (max-width: 600px) {
-  .navbar-links {
-    display: none;
+/* Animations */
+@keyframes rocket-movement {
+  100% {
+    transform: translate(80vw, -40vh);
   }
+}
 
-  .custom-navbar {
-    text-align: center;
+@keyframes spin-earth {
+  100% {
+    transform: rotate(-360deg);
+    transition: transform 20s;
   }
+}
 
-  .brand-logo img {
-    width: 120px;
+@keyframes move-astronaut {
+  100% {
+    transform: translate(-10vw, -10vh);
   }
+}
 
+@keyframes rotate-astronaut {
+  100% {
+    transform: rotate(-720deg);
+  }
+}
+
+@keyframes glow-star {
+  40% {
+    opacity: 0.3;
+  }
+  90%,
+  100% {
+    opacity: 1;
+    transform: scale(1.2);
+    border-radius: 999999px;
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  /* Laptops */
+  .central-body {
+    padding-top: 20%;
+  }
+  .object_rocket {
+    top: 80%;
+  }
   .box_astronaut {
-    top: 70%;
+    right: 15%;
+    top: 65%;
   }
+}
 
+@media (max-width: 768px) {
+  /* Tablets */
   .central-body {
     padding-top: 25%;
   }
-} */
+  .object_rocket {
+    top: 85%;
+    transform: translateX(-6vw);
+  }
+  .object_earth {
+    left: 10%;
+  }
+  .object_moon {
+    left: 20%;
+  }
+  .box_astronaut {
+    right: 10%;
+    top: 70%;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Mobile */
+  .custom-navbar {
+    padding-top: 2vw;
+  }
+  .logo-img {
+    width: clamp(40px, 15vw, 60px);
+  }
+  .central-body {
+    padding-top: 30%;
+  }
+  .image-404 {
+    width: clamp(100px, 50vw, 200px);
+  }
+  .btn-go-home {
+    width: clamp(60px, 20vw, 100px);
+    font-size: clamp(8px, 2vw, 12px);
+  }
+  .object_rocket {
+    top: 90%;
+    width: clamp(20px, 10vw, 40px);
+  }
+  .object_earth {
+    top: 15%;
+    left: 5%;
+    width: clamp(40px, 15vw, 80px);
+  }
+  .object_moon {
+    top: 10%;
+    left: 15%;
+    width: clamp(30px, 10vw, 60px);
+  }
+  .box_astronaut {
+    top: 75%;
+    right: 5%;
+  }
+  .object_astronaut {
+    width: clamp(50px, 20vw, 100px);
+  }
+  .glowing_stars .star {
+    width: 0.5vw;
+    height: 0.5vw;
+  }
+}

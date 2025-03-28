@@ -17,7 +17,8 @@ export default function HackathonAboutInput() {
         types: ["heading", "paragraph"],
       }),
     ],
-    content: "<p>meet</p>",
+    content:
+      "<blockquote><p><strong><em><s>meet</s></em></strong></p></blockquote>",
     editorProps: {
       handleKeyDown(view, event) {
         const { state, dispatch } = view;

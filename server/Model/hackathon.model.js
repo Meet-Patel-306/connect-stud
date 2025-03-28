@@ -8,6 +8,7 @@ const hackathonSchema = new mongoose.Schema({
   hackathonLocation: { type: String, required: true },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
+  subjects: [{ type: String }],
   type: { type: String, required: true },
   teamSize: { type: Number, required: true },
   winner: { type: Number },

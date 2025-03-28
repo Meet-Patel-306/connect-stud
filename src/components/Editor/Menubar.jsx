@@ -11,6 +11,7 @@ export default function Menubar({ editor }) {
         <div className="flex flex-wrap justify-center">
           <div className="mx-1">
             <button
+              type="button"
               onClick={() => editor.chain().focus().toggleBold().run()}
               className={`p-1 border border-black h-8 w-8 rounded-l-md my-2 ml-2 mr-0 font-bold ${
                 editor.isActive("bold")
@@ -18,11 +19,12 @@ export default function Menubar({ editor }) {
                   : "bg-gray-50"
               }`}
             >
-              <strong>B</strong>
+              B
             </button>
             <button
+              type="button"
               onClick={() => editor.chain().focus().toggleItalic().run()}
-              className={`p-1 border border-l-0 border-black h-8 w-8 rounded-none my-2 mx-0${
+              className={`p-1 border border-l-0 border-black h-8 w-8 rounded-none my-2 mx-0 ${
                 editor.isActive("italic")
                   ? "bg-[#5800CC] text-white"
                   : "bg-gray-50"
@@ -31,6 +33,7 @@ export default function Menubar({ editor }) {
               <i>I</i>
             </button>
             <button
+              type="button"
               onClick={() => editor.chain().focus().toggleStrike().run()}
               className={`p-1 border border-l-0 border-black h-8 w-8 rounded-none my-2 mx-0 ${
                 editor.isActive("strike")
@@ -41,6 +44,7 @@ export default function Menubar({ editor }) {
               <strike>S</strike>
             </button>
             <button
+              type="button"
               onClick={() => editor.chain().focus().toggleBulletList().run()}
               className={`p-1 border border-l-0 border-r-1 border-black h-8 w-8 rounded-r-md my-2 mx-0 ${
                 editor.isActive("bulletList")
@@ -53,6 +57,7 @@ export default function Menubar({ editor }) {
           </div>
           <div className="mx-1">
             <button
+              type="button"
               onClick={() => editor.chain().focus().toggleCode().run()}
               className={`p-1 border border-l-1 border-black h-8 w-auto rounded-l-md my-2 mx-0 ${
                 editor.isActive("code")
@@ -63,6 +68,7 @@ export default function Menubar({ editor }) {
               <code>Code</code>
             </button>
             <button
+              type="button"
               onClick={() => editor.chain().focus().setParagraph().run()}
               className={`p-1 border border-l-0 border-black h-8 w-auto rounded-none my-2 mx-0 font-bold ${
                 editor.isActive("paragraph")
@@ -73,6 +79,7 @@ export default function Menubar({ editor }) {
               Paragraph
             </button>
             <button
+              type="button"
               onClick={() => editor.chain().focus().toggleBlockquote().run()}
               className={`p-1 border border-l-0 border-black h-8 w-auto rounded-r-md my-2 mx-0 font-bold ${
                 editor.isActive("blockquote")
@@ -85,6 +92,7 @@ export default function Menubar({ editor }) {
           </div>
           <div className="mx-1">
             <button
+              type="button"
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 1 }).run()
               }
@@ -97,6 +105,7 @@ export default function Menubar({ editor }) {
               H1
             </button>
             <button
+              type="button"
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 2 }).run()
               }
@@ -109,6 +118,7 @@ export default function Menubar({ editor }) {
               H2
             </button>
             <button
+              type="button"
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 3 }).run()
               }
@@ -121,6 +131,7 @@ export default function Menubar({ editor }) {
               H3
             </button>
             <button
+              type="button"
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 4 }).run()
               }
@@ -133,6 +144,7 @@ export default function Menubar({ editor }) {
               H4
             </button>
             <button
+              type="button"
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 5 }).run()
               }
@@ -145,6 +157,7 @@ export default function Menubar({ editor }) {
               H5
             </button>
             <button
+              type="button"
               onClick={() =>
                 editor.chain().focus().toggleHeading({ level: 6 }).run()
               }
@@ -159,6 +172,7 @@ export default function Menubar({ editor }) {
           </div>
           <div className="mx-1">
             <button
+              type="button"
               onClick={() => editor.chain().focus().setTextAlign("left").run()}
               className={`p-1 border border-l-1 border-black h-8 w-8 rounded-l-md my-2 mx-0 ${
                 editor.isActive({ textAlign: "left" })
@@ -169,6 +183,7 @@ export default function Menubar({ editor }) {
               <i className="fa-solid fa-align-left"></i>
             </button>
             <button
+              type="button"
               onClick={() =>
                 editor.chain().focus().setTextAlign("center").run()
               }
@@ -181,6 +196,7 @@ export default function Menubar({ editor }) {
               <i className="fa-solid fa-align-center"></i>
             </button>
             <button
+              type="button"
               onClick={() => editor.chain().focus().setTextAlign("right").run()}
               className={`p-1 border border-l-0 border-r-1 border-black h-8 w-8 rounded-r-md my-2 mx-0 ${
                 editor.isActive({ textAlign: "right" })
@@ -193,18 +209,21 @@ export default function Menubar({ editor }) {
           </div>
           <div className="mx-1">
             <button
+              type="button"
               onClick={() => editor.chain().focus().undo().run()}
               className={`p-1 border border-l-1 border-black h-8 w-auto rounded-l-md my-2 mx-0 bg-gray-50 font-bold`}
             >
               <i className="fa-solid fa-rotate-left mx-2"></i>
             </button>
             <button
+              type="button"
               onClick={() => editor.chain().focus().redo().run()}
               className={`p-1 border border-l-0 border-black h-8 w-auto rounded-none my-2 mx-0 bg-gray-50 font-bold`}
             >
               <i className="fa-solid fa-rotate-right mx-2"></i>
             </button>
             <button
+              type="button"
               onClick={() =>
                 editor.chain().focus().setTextAlign("justify").run()
               }
@@ -217,6 +236,7 @@ export default function Menubar({ editor }) {
               <i className="fa-solid fa-align-justify"></i>
             </button>
             <button
+              type="button"
               onClick={() => editor.chain().focus().setContent("").run()}
               className="p-1 border border-l-0 border-black h-8 w-auto rounded-r-md my-2 mx-0 bg-gray-50"
             >

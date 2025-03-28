@@ -8,6 +8,7 @@ const User = require("./Model/user.model");
 const registerRoutes = require("./routes/registerRoutes.js");
 const loginRoutes = require("./routes/loginRoutes.js");
 const profileRoutes = require("./routes/profileRoutes.js");
+const hackathonRoute = require("./routes/hackathonRoutes.js");
 const path = require("path");
 const app = express();
 
@@ -58,16 +59,17 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       try {
         let user = await User.findOne({ googleId: profile.id });
-
+        console.log(profile);
         if (!user) {
           user = await User.create({
             googleId: profile.id,
             firstName: profile.name.givenName,
             lastName: profile.name.familyName,
             email: profile.emails[0].value,
+            username: profile.emails[0].value.split("@")[0],
           });
         }
-        console.log(profile);
+        // console.log(profile);
         return done(null, user);
       } catch (err) {
         return done(err, null);
@@ -95,5 +97,6 @@ app.use("/api/register", registerRoutes);
 app.use("/auth", loginRoutes);
 //profile
 app.use("/api/profile", profileRoutes);
-
+//hackathon
+app.use("/api/hackathon", hackathonRoute);
 app.listen(3000);
