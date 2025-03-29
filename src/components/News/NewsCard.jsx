@@ -1,57 +1,51 @@
 import React from "react";
 
-const NewsCard = () => {
+export default function NewsCard () {
     return (
         <>
-            <div className="w-2xl md:w-[900px] lg:w-[1300px] bg-white dark:bg-gray-800 text-black dark:text-white p-4 mx-auto shadow-lg rounded-2xl overflow-hidden mb-4 mr-auto ml-auto">
-                <div className="flex flex-col md:flex-row">
-                    {/* Image Block */}
-                    <img
-                        src="../../../public/360_F_210545946_H8K0CJih9ToRMqbBczgr2BLWJYcrNb1V.jpg"
-                        alt="Blog"
-                        className="w-80 sm:w-80 md:w-64 lg:w-64 rounded-lg object-auto mx-auto lg:mx-0"
-                    />
+            <div className="max-w-2xl md:max-w-[900px] lg:max-w-[1300px] bg-white dark:bg-gray-800 text-black dark:text-white p-2 mx-auto shadow-xl rounded-3xl overflow-hidden mx-5">
+                <div class="max-w-xs">
+                    <a href="#">
+                        <img
+                            src="../../../public/360_F_210545946_H8K0CJih9ToRMqbBczgr2BLWJYcrNb1V.jpg"
+                            alt="tiger"
+                            className="w-80 sm:w-80 md:w-64 lg:w-64 rounded-lg object-auto mx-auto lg:mx-0 mb-5"
+                        />
+                    </a>
 
-                    {/* Text & Author Block */}
-                    <div className="p-4 flex flex-col justify-between w-full lg:w-2/3">
-                    <div>
-                    <span className="bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 text-xs px-2 py-1 rounded-full">
+                    <div className="p-4 flex flex-col justify-between w-full ml-0 pl-0 text-left">
+                        <div className="flex items-center gap-2 mb-2 self-start">
+                            <span className="bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 text-xs px-2 py-1 rounded-full">
                                 Health
                             </span>
-                        <p className="text-gray-500 text-sm mt-1">23 Aug 2023</p>
-                        <h3 className="text-lg font-semibold mt-2">
-                            This is the best Blog card for your business template.
-                        </h3>
-                    </div>
-
-                    {/* Author & Read More Button */}
-                    <div className="flex items-center justify-between mt-4">
-                        <div className="flex items-center gap-2">
-                            <img
-                                src="https://randomuser.me/api/portraits/men/45.jpg"
-                                alt="Avatar"
-                                className="w-8 h-8 rounded-full"
-                            />
-                            <div>
-                                <p className="text-sm font-semibold">Fitbit Incorporation</p>
-                                <p className="text-xs text-gray-500">San Diego, California</p>
-                            </div>
+                            <span className="text-gray-500 text-sm">23 Aug 2023</span>
                         </div>
-                        <button className="px-4 py-2 font-medium text-blue-500 flex items-center text-[9px] md:text-lg">
-                            Read More
-                        </button>
+
+                        <div className="flex items-center justify-start">
+                            <div className="flex items-center gap-2">
+                                <img
+                                    src="https://randomuser.me/api/portraits/men/45.jpg"
+                                    alt="Avatar"
+                                    className="w-8 h-8 rounded-full"
+                                />
+                                <div>
+                                    <p className="text-sm font-semibold">Fitbit Incorporation</p>
+                                    <p className="text-xs text-gray-500">San Diego, California</p>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
-                    </div>
+                    <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
+                        <a href="#">Our first office</a>
+                    </h2>
+                    <p class="text-gray-500 dark:text-gray-400">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
+                    <button className="font-medium text-blue-500 flex items-center text-[12px] md:text-sm underline underline-offset-1">
+                        Read More
+                    </button>
                 </div>
-            </div>
-
-
-
-
-
-            
+            </div> 
         </>
     );
 };
 
-export default NewsCard;
