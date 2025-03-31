@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import Navbar from "../Navbar";
 import HackathonCard from "./HackathonCard";
-import HackathonForm from "./RegisterHackathon/HackathonForm.jsx";
-import HackthoneBlog from "./HackathonBlog.jsx";
 import { hackathonDataRoutes } from "../../APIs/APIRoutes.js";
+import { useDispatch, useSelector } from "react-redux";
+import { setHackathons } from "../../features/hackathonDataSlice.js";
 import axios from "axios";
 
 export default function Hackthone() {
-  const [hackathons, setHackathons] = useState([]);
+  const dispatch = useDispatch();
+  // const [hackathons, setHackathons] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const { ref, inView } = useInView();
-
   useEffect(() => {
     const fetchHackathons = async () => {
+      if (!hasMore) return;
+      setLoading(true);
       try {
-        setLoading(true);
         const res = await axios.get(
           `${hackathonDataRoutes}?page=${page}&limit=5`
         );
         if (res.data.hackathons.length === 0) {
           setHasMore(false);
         } else {
-          setHackathons((prev) => [...prev, ...res.data.hackathons]);
+          dispatch(setHackathons(res.data.hackathons));
         }
       } catch (err) {
         console.error("Failed to fetch:", err);
@@ -41,11 +41,9 @@ export default function Hackthone() {
       setPage((prevPage) => prevPage + 1);
     }
   }, [inView, hasMore]);
-
+  const hackathons = useSelector((state) => state.hackathonData.hackathons);
   return (
     <>
-      <Navbar />
-      <HackthoneBlog />
       {hackathons.map((hackathon, index) => (
         <HackathonCard
           hackathonName={hackathon.hackathonName}
@@ -62,10 +60,6 @@ export default function Hackthone() {
           key={index}
         />
       ))}
-      <h1 className="text-3xl font-bold underline text-red-600 dark:text-gray-950">
-        meet
-      </h1>
-      <HackathonForm />
       {Loading && hasMore && (
         <div ref={ref}>
           <div role="status" className="flex justify-center">

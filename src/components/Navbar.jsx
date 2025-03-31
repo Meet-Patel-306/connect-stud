@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Darkmode from "./Darkmode";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectHome,
@@ -8,9 +8,9 @@ import {
   selectHackathon,
   selectConnect,
 } from "../features/navbarSelectSlice";
-import { setUserData } from "../features/userDataSlice";
-import { profileAuthRoutes } from "../APIs/APIRoutes";
-import axios from "axios";
+// import { setUserData } from "../features/userDataSlice";
+// import { profileAuthRoutes } from "../APIs/APIRoutes";
+// import axios from "axios";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,37 +27,36 @@ function Navbar() {
   const isNews = useSelector((state) => state.navbarSelect.isNews);
   const isHackathon = useSelector((state) => state.navbarSelect.isHackathon);
   const isConnect = useSelector((state) => state.navbarSelect.isConnect);
-  const userData = useSelector((state) => state.userData);
+  // const userData = useSelector((state) => state.userData);
 
-  const navigate = useNavigate();
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        console.log("navbar api call");
-        const res = await axios.get(profileAuthRoutes, {
-          withCredentials: true,
-        });
-        console.log(res.data);
-        setUserData(res.data);
-      } catch (err) {
-        if (err.response?.status === 401) {
-          navigate("/login"); // Redirect if unauthorized
-        } else {
-          console.error("Failed to fetch user:", err);
-        }
-      }
-    };
-    if (userData == null) {
-      console.log(userData);
-      fetchUser();
-      dispatch(setUserData({ user: "meet" }));
-    }
-  }, []);
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       console.log("navbar api call");
+  //       const res = await axios.get(profileAuthRoutes, {
+  //         withCredentials: true,
+  //       });
+  //       console.log(res.data);
+  //       dispatch(setUserData(res.data));
+  //     } catch (err) {
+  //       if (err.response?.status === 401) {
+  //         navigate("/login"); // Redirect if unauthorized
+  //       } else {
+  //         console.error("Failed to fetch user:", err);
+  //       }
+  //     }
+  //   };
+  //   if (userData == null) {
+  //     console.log(userData);
+  //     fetchUser();
+  //   }
+  // }, []);
 
   return (
     <>
       <nav className="bg-white border-b-gray-900 border-b-2 dark:bg-gray-900">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between p-4">
+        <div className="max-w-full flex flex-wrap items-center justify-between p-4">
           <a
             href="https://flowbite.com/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -102,7 +101,7 @@ function Navbar() {
                 <ul className="py-2" aria-labelledby="user-menu-button">
                   <li>
                     <a
-                      href="#"
+                      href="/profile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Profile

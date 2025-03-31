@@ -58,7 +58,10 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        let user = await User.findOne({ googleId: profile.id });
+        let user = await User.findOne({
+          $or: [{ googleId: profile.id }, { email: profile.emails[0].value }],
+        });
+
         console.log(profile);
         if (!user) {
           user = await User.create({
@@ -80,7 +83,7 @@ passport.use(
 
 //connect to mongodb
 mongoose
-  .connect("mongodb://localhost:27017/connectStud")
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("connect to mongodb"))
   .catch((err) => {
     console.log(err);

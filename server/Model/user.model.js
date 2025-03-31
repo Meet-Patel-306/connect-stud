@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema({
@@ -37,6 +38,7 @@ const userSchema = new mongoose.Schema({
       jobInfo: { type: String },
     },
   ],
+  hackathonTeam: [{ type: Schema.Types.ObjectId, ref: "Team" }],
 });
 
 // Add passport-local-mongoose plugin to the schema

@@ -4,6 +4,7 @@ import navbarSelectReducer from "../features/navbarSelectSlice";
 import registerDataReducer from "../features/registerDataSlice";
 import userDataReducer from "../features/userDataSlice";
 import hackathonRegisterReducer from "../features/hackathonRegisterSlice";
+import hackathonDataReducer from "../features/hackathonDataSlice";
 export const store = configureStore({
   reducer: {
     darkMode: darkModeReducer,
@@ -11,5 +12,6 @@ export const store = configureStore({
     registerData: registerDataReducer,
     userData: userDataReducer,
     hackathonRegister: hackathonRegisterReducer,
+    hackathonData: hackathonDataReducer,
   },
 });

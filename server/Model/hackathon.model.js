@@ -16,6 +16,7 @@ const hackathonSchema = new mongoose.Schema({
   secondRunnerUp: { type: Number },
   hackathonAbout: { type: String },
   registerLink: { type: String },
+  teams: [{ type: Schema.Types.ObjectId, ref: "Team" }],
   owner: { type: Schema.Types.ObjectId, ref: "User" },
 });
 const Hackathon = mongoose.model("Hackathon", hackathonSchema);
