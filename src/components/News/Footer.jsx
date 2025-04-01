@@ -5,9 +5,9 @@ export default function Footer() {
         <>
             <div class="bg-gray-50 dark:bg-gray-800 antialiased">
                 <div class="p-4 py-6 mx-auto max-w-screen-xl md:p-8 lg:p-10">
-                    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                    {/* <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" /> */}
                     <div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
-                        <div>
+                        {/* <div>
                             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Company</h2>
                             <ul class="text-gray-500 dark:text-gray-400">
                                 <li class="mb-4">
@@ -88,9 +88,9 @@ export default function Footer() {
                                     <a href="#" class="hover:underline">MacOS</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> */}
                     </div>
-                    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                    {/* <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" /> */}
                     <div class="text-center">
                         <a href="#" class="flex justify-center items-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
                             <svg class="mr-2 h-8" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +113,7 @@ export default function Footer() {
                         </span>
                         <ul class="flex justify-center mt-5 space-x-5">
                             <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
+                                <a href="https://www.facebook.com/profile.php?id=61556886960349" class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
                                     <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
                                         <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
                                     </svg>
