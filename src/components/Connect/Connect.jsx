@@ -21,6 +21,10 @@ export default function Connect() {
           ))}
         </div>
       </div>
+
+      <Message/>
+      {/*<Receiver/>*/}
+      {/*<Sender/>*/}
     </section>
   );
 }
