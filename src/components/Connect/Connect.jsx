@@ -1,7 +1,10 @@
 import UserCard from "./UserCard";
+import Message from "../Message/Message"
+import Receiver from "../Message/Receiver";
+import Sender from "../Message/Sender"
 
 export default function Connect() {
-  const users = Array(22).fill(null); // Adjust number of cards dynamically
+  const users = Array(22).fill(null);
 
   return (
     <section aria-labelledby="connect-title" className="flex flex-col items-center bg-gray-50 dark:bg-gray-800">
@@ -19,6 +22,5 @@ export default function Connect() {
         </div>
       </div>
     </section>
-
   );
 }
