@@ -19,7 +19,14 @@ export default function NewsCard() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("News Submitted:", { category, title, content, image, imageFile, location });
+    console.log("News Submitted:", {
+      category,
+      title,
+      content,
+      image,
+      imageFile,
+      location,
+    });
 
     // Clear inputs
     setCategory("");
@@ -59,39 +66,105 @@ export default function NewsCard() {
 
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">News Category<span className="required-input">*</span></label>
-                <input type="text" placeholder="Enter category" value={category} onChange={(e) => setCategory(e.target.value)} className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white" required />
+                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">
+                  News Category<span className="required-input">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+                  required
+                />
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">Title<span className="required-input">*</span></label>
-                <input type="text" placeholder="Enter title" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white" required />
+                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">
+                  Title<span className="required-input">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+                  required
+                />
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">Content<span className="required-input">*</span></label>
-                <textarea placeholder="Enter content" value={content} onChange={(e) => setContent(e.target.value)} className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white" required></textarea>
+                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">
+                  Content<span className="required-input">*</span>
+                </label>
+                <textarea
+                  placeholder="Enter content"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+                  required
+                ></textarea>
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">Image URL</label>
-                <input type="text" placeholder="Enter image URL" value={image} onChange={(e) => setImage(e.target.value)} className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white" />
+                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">
+                  Image URL
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter image URL"
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
+                  className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+                />
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">Upload Image</label>
-                <input type="file" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])} className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white" />
+                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">
+                  Upload Image
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setImageFile(e.target.files[0])}
+                  className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+                />
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">Location</label>
-                <input type="text" placeholder="Enter location" value={location} onChange={(e) => setLocation(e.target.value)} className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white" />
+                <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">
+                  Location
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter location"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+                />
               </div>
-
 
               <div className="flex justify-end gap-4">
-                <button type="button" className="px-4 py-2 bg-red-400 dark:bg-red-600 text-white rounded-lg" onClick={() => { setCategory(""); setTitle(""); setContent(""); setImage(""); setImageFile(null); setLocation(""); }}>Reset</button>
-                <button type="submit" className="px-4 py-2 bg-blue-500 dark:bg-blue-600 text-white rounded-lg">Submit</button>
+                <button
+                  type="button"
+                  className="px-4 py-2 bg-red-400 dark:bg-red-600 text-white rounded-lg"
+                  onClick={() => {
+                    setCategory("");
+                    setTitle("");
+                    setContent("");
+                    setImage("");
+                    setImageFile(null);
+                    setLocation("");
+                  }}
+                >
+                  Reset
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-500 dark:bg-blue-600 text-white rounded-lg"
+                >
+                  Submit
+                </button>
               </div>
             </form>
           </div>

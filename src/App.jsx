@@ -5,8 +5,6 @@ import { profileAuthRoutes } from "./APIs/APIRoutes";
 import { useSelector, useDispatch } from "react-redux";
 import { setUserData } from "./features/userDataSlice";
 import axios from "axios";
-import Error from "./components/404/Error"
-import Error500 from "./components/404/Error_500"
 
 function App() {
   const userData = useSelector((state) => state.userData?._id);
@@ -38,9 +36,7 @@ function App() {
     <>
       <Navbar />
       <Outlet />
-      <Error500/>
-      
-
+      {/* <Error500/> */}
     </>
   );
 }
