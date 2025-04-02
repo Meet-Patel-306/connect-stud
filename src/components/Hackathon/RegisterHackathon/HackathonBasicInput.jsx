@@ -179,8 +179,8 @@ export default function HackathonBasicInput() {
           Hackathon Type<span className="required-input">*</span>
         </label>
       </div>
-      <div className="grid grid-cols-2 grid-flow-row gap-4">
-        <div className="flex items-center ps-4 dark:border-gray-700">
+      <div className="grid grid-cols-3 grid-flow-row gap-4">
+        <div className="flex items-center ps-2 dark:border-gray-700">
           <input
             id="online"
             type="radio"
@@ -224,6 +224,29 @@ export default function HackathonBasicInput() {
             className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
           >
             Offline
+          </label>
+        </div>
+        <div className="flex items-center ps-4 dark:border-gray-700">
+          <input
+            id="hybrid"
+            type="radio"
+            value="hybrid"
+            name="type"
+            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
+            onChange={(e) => {
+              dispatch(
+                getHackathonRegister({
+                  name: e.target.name,
+                  value: e.target.value,
+                })
+              );
+            }}
+          />
+          <label
+            htmlFor="hybrid"
+            className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
+            Hybrid
           </label>
         </div>
       </div>

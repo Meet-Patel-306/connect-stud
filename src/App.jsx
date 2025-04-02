@@ -1,14 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router";
 import Navbar from "./components/Navbar";
-import Profile from "./components/Profile/Profile";
-import CreatePostButton from "./components/CreatePostButton";
+import { profileAuthRoutes } from "./APIs/APIRoutes";
+import { useSelector, useDispatch } from "react-redux";
+import { setUserData } from "./features/userDataSlice";
+import axios from "axios";
 
 function App() {
+  const userData = useSelector((state) => state.userData?._id);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        console.log("navbar api call");
+        const res = await axios.get(profileAuthRoutes, {
+          withCredentials: true,
+        });
+        console.log(res.data);
+        dispatch(setUserData(res.data));
+      } catch (err) {
+        if (err.response?.status === 401) {
+          navigate("/login"); // Redirect if unauthorized
+        } else {
+          console.error("Failed to fetch user:", err);
+        }
+      }
+    };
+    if (userData == null) {
+      console.log(userData);
+      fetchUser();
+    }
+  }, [userData]);
   return (
     <>
       <Navbar />
-      <CreatePostButton />
-      <Profile email={"meet@gmail.com"} />
+      <Outlet />
     </>
   );
 }
