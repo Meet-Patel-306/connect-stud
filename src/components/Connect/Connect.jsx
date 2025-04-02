@@ -1,10 +1,13 @@
 import Navbar from "../Navbar";
+import Message from "../Message/Message"
+import Receiver from "../Message/Receiver";
+import Sender from "../Message/Sender"
 export default function Connect() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline text-red-600 dark:text-gray-950">
-        connect
-      </h1>
+      <Message/>
+      {/*<Receiver/>*/}
+      {/*<Sender/>*/}
     </>
   );
 }
