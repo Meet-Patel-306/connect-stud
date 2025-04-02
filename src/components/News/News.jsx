@@ -22,6 +22,7 @@ export default function News() {
             <NewsCard />
             <NewsCard />
           </div>
+
         </div>
       </div>
 
