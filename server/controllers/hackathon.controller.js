@@ -1,4 +1,4 @@
-const User = require("../Model/hackathon.model");
+const User = require("../Model/user.model");
 const Hackathon = require("../Model/hackathon.model");
 const Team = require("../Model/team.model");
 const mongoose = require("mongoose");
