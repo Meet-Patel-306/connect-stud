@@ -9,7 +9,7 @@ export const darkModeSlice = createSlice({
   initialState,
   reducers: {
     toggleDarkMode: (state, actions) => {
-      console.log(state.isDarkMode);
+      // console.log(state.isDarkMode);
       state.isDarkMode = !state.isDarkMode;
       localStorage.setItem("isDark", state.isDarkMode);
       if (state.isDarkMode) {

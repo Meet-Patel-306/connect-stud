@@ -19,7 +19,9 @@ export default function CreatePostButton() {
         </button>
         {/* News */}
         <button className="w-[52px] h-[52px] bg-gray-600 text-white rounded-full shadow border">
-          <i className="fa-solid fa-newspaper"></i>
+          <a href="/news/post">
+            <i className="fa-solid fa-newspaper"></i>
+          </a>
         </button>
       </div>
       {/* Main FAB */}

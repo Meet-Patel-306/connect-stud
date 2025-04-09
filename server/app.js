@@ -8,7 +8,8 @@ const User = require("./Model/user.model");
 const registerRoutes = require("./routes/registerRoutes.js");
 const loginRoutes = require("./routes/loginRoutes.js");
 const profileRoutes = require("./routes/profileRoutes.js");
-const hackathonRoute = require("./routes/hackathonRoutes.js");
+const hackathonRoutes = require("./routes/hackathonRoutes.js");
+const newsRoutes = require("./routes/newsRoutes.js");
 const path = require("path");
 const app = express();
 
@@ -101,5 +102,7 @@ app.use("/auth", loginRoutes);
 //profile
 app.use("/api/profile", profileRoutes);
 //hackathon
-app.use("/api/hackathon", hackathonRoute);
+app.use("/api/hackathon", hackathonRoutes);
+//news
+app.use("/api/news", newsRoutes);
 app.listen(3000);

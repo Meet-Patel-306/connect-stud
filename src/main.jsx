@@ -4,8 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import App from "./App.jsx";
 import HomePage from "./components/Home/HomePage.jsx";
 import NewsPage from "./components/News/NewsPage.jsx";
-import HackathonPage from "./components/Hackathon/HackathonPage.jsx";
 import News from "./components/News/News.jsx";
+import NewsForm from "./components/News/NewsForm.jsx";
+import HackathonPage from "./components/Hackathon/HackathonPage.jsx";
 import Hackathon from "./components/Hackathon/Hackathon.jsx";
 import HackathonForm from "./components/Hackathon/RegisterHackathon/HackathonForm.jsx";
 import HackthoneBlog from "./components/Hackathon/HackathonBlog.jsx";
@@ -18,6 +19,7 @@ import "./index.css";
 import { store } from "./app/store.js";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import NewsBlog from "./components/News/NewsBlog.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -28,6 +30,8 @@ createRoot(document.getElementById("root")).render(
             <Route index element={<HomePage />} />
             <Route path="news" element={<NewsPage />}>
               <Route index element={<News />} />
+              <Route path="post" element={<NewsForm />} />
+              <Route path=":id" element={<NewsBlog />} />
             </Route>
             <Route path="hackathon" element={<HackathonPage />}>
               <Route index element={<Hackathon />} />
