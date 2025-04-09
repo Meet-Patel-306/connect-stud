@@ -4,3 +4,5 @@ export const loginRoutes = `${host}/auth/login`;
 export const profileAuthRoutes = `${host}/api/profile`;
 export const hackathonRegisterRoutes = `${host}/api/hackathon/post`;
 export const hackathonDataRoutes = `${host}/api/hackathon`;
+export const newsDataRoutes = `${host}/api/news`;
+export const newsPostRoutes = `${host}/api/news/post`;

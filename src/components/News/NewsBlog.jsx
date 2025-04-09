@@ -1,6 +1,50 @@
-import React from "react";
+import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { host } from "../../APIs/APIRoutes";
+import axios from "axios";
 
 export default function NewsBlog() {
+  const { id } = useParams();
+  const [news, setNews] = useState(null);
+  let newsData = useSelector((state) =>
+    state.newsData.news.find((n) => n._id === id)
+  );
+  useEffect(() => {
+    const fetchNews = async () => {
+      const res = await axios.get(`${host}/api/news/${id}`);
+      setNews(res.data.message);
+    };
+    if (!newsData) {
+      console.log("1");
+      fetchNews();
+    } else {
+      setNews(newsData);
+      console.log("2");
+    }
+  }, [id]);
+  console.log(news);
+  if (!news)
+    return (
+      <div role="status" className="flex justify-center">
+        <svg
+          aria-hidden="true"
+          className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+          viewBox="0 0 100 101"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+            fill="currentColor"
+          />
+          <path
+            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+            fill="currentFill"
+          />
+        </svg>
+      </div>
+    );
   return (
     <>
       <main className="pt-4 pb-8 lg:pt-8 lg:pb-12 bg-white dark:bg-gray-900 antialiased">
@@ -20,341 +64,22 @@ export default function NewsBlog() {
                       rel="author"
                       className="text-xl font-bold text-gray-900 dark:text-white"
                     >
-                      Jese Leos
+                      {news.ownerName}
                     </a>
                     <p className="text-base text-gray-500 dark:text-gray-400">
                       Graphic Designer, Educator & CEO Flowbite
                     </p>
                     <p className="text-base text-gray-500 dark:text-gray-400">
-                      <time
-                        pubdate
-                        datetime="2022-02-08"
-                        title="February 8th, 2022"
-                      >
-                        Feb. 8, 2022
-                      </time>
+                      {news.date}
                     </p>
                   </div>
                 </div>
               </address>
               <h1 className="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
-                Best Practices for Successful Prototypes
+                {news.title}
               </h1>
             </header>
-
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              Flowbite is an open-source library of UI components built with the
-              utility-first classNamees from Tailwind CSS. It also includes
-              interactive elements such as dropdowns, modals, datepickers.
-            </p>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              Before going digital, you might benefit from scribbling down some
-              ideas in a sketchbook. This way, you can think things through
-              before committing to an actual design project.
-            </p>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              But then I found a{" "}
-              <a href="https://flowbite.com">
-                component library based on Tailwind CSS called Flowbite
-              </a>
-              . It comes with the most commonly used UI components, such as
-              buttons, navigation bars, cards, form elements, and more which are
-              conveniently built with the utility classNamees from Tailwind CSS.
-            </p>
-            <figure className="my-6">
-              <img
-                src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png"
-                alt="Digital artwork"
-                className="w-full max-w-lg mx-auto rounded-lg shadow-md"
-              />
-              <figcaption className="text-center text-gray-600 dark:text-gray-400 mt-2">
-                Digital art by Anonymous
-              </figcaption>
-            </figure>
-
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white leading-snug mt-8 mb-4">
-              Getting started with Flowbite
-            </h2>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              First of all you need to understand how Flowbite works. This
-              library is not another framework. Rather, it is a set of
-              components based on Tailwind CSS that you can just copy-paste from
-              the documentation.
-            </p>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              It also includes a JavaScript file that enables interactive
-              components, such as modals, dropdowns, and datepickers which you
-              can optionally include into your project via CDN or NPM.
-            </p>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              You can check out the{" "}
-              <a href="https://flowbite.com/docs/getting-started/quickstart/">
-                quickstart guide
-              </a>{" "}
-              to explore the elements by including the CDN files into your
-              project. But if you want to build a project with Flowbite I
-              recommend you to follow the build tools steps so that you can
-              purge and minify the generated CSS.
-            </p>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              You'll also receive a lot of useful application UI, marketing UI,
-              and e-commerce pages that can help you get started with your
-              projects even faster. You can check out this{" "}
-              <a href="https://flowbite.com/docs/components/tables/">
-                comparison table
-              </a>{" "}
-              to better understand the differences between the open-source and
-              pro version of Flowbite.
-            </p>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white leading-snug mt-8 mb-4">
-              When does design come in handy?
-            </h2>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              While it might seem like extra work at a first glance, here are
-              some key moments in which prototyping will come in handy:
-            </p>
-
-            <ol className="list-decimal pl-6 space-y-4 text-gray-700 dark:text-gray-300">
-              <li>
-                <strong>Usability testing:</strong> Does your user know how to
-                exit out of screens? Can they follow your intended user journey
-                and buy something from the site you’ve designed? By running a
-                usability test, you’ll be able to see how users will interact
-                with your design once it’s live.
-              </li>
-              <li>
-                <strong>Involving stakeholders:</strong> Need to check if your
-                GDPR consent boxes are displaying properly? Pass your prototype
-                to your data protection team and they can test it for real.
-              </li>
-              <li>
-                <strong>Impressing a client:</strong> Prototypes can help
-                explain or even sell your idea by providing your client with a
-                hands-on experience.
-              </li>
-              <li>
-                <strong>Communicating your vision:</strong> By using an
-                interactive medium to preview and test design elements,
-                designers and developers can understand each other — and the
-                project — better.
-              </li>
-            </ol>
-
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white leading-normal mt-6 mb-3">
-              Laying the Groundwork for Best Design
-            </h3>
-            <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              Before going digital, you might benefit from scribbling down some
-              ideas in a sketchbook. This way, you can think things through
-              before committing to an actual design project.
-            </p>
-            <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              Let's start by including the CSS file inside the{" "}
-              <code className="px-1 py-0.5 bg-gray-100 dark:bg-gray-800 rounded-md">
-                head
-              </code>{" "}
-              tag of your HTML.
-            </p>
-
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white leading-normal mt-6 mb-3">
-              Understanding Typography
-            </h3>
-
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white leading-snug mt-4 mb-2">
-              Type Properties
-            </h4>
-            <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              A typeface is a collection of letters. While each letter is
-              unique, certain shapes are shared across letters. A typeface
-              represents shared patterns across a collection of letters.
-            </p>
-
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white leading-snug mt-4 mb-2">
-              Baseline
-            </h4>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              A typeface is a collection of letters. While each letter is
-              unique, certain shapes are shared across letters. A typeface
-              represents shared patterns across a collection of letters.
-            </p>
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white leading-snug mt-4 mb-2">
-              Measurement from the baseline
-            </h4>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              A typeface is a collection of letters. While each letter is
-              unique, certain shapes are shared across letters. A typeface
-              represents shared patterns across a collection of letters.
-            </p>
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white leading-normal mt-6 mb-3">
-              Type classNameification
-            </h3>
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white leading-snug mt-4 mb-2">
-              Serif
-            </h4>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              A serif is a small shape or projection that appears at the
-              beginning or end of a stroke on a letter. Typefaces with serifs
-              are called serif typefaces. Serif fonts are classified as one of
-              the following:
-            </p>
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white leading-snug mt-4 mb-2">
-              Old-Style serifs
-            </h4>
-            <ul className="list-disc pl-6 space-y-2 text-gray-700 dark:text-gray-300">
-              <li>Low contrast between thick and thin strokes</li>
-              <li>Diagonal stress in the strokes</li>
-              <li>Slanted serifs on lower-case ascenders</li>
-            </ul>
-
-            <img
-              src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-2.png"
-              alt="Typography Example"
-              className="w-full max-w-lg mx-auto my-4 rounded-lg shadow-md"
-            />
-
-            <ol className="list-decimal pl-6 space-y-2 text-gray-700 dark:text-gray-300">
-              <li>Low contrast between thick and thin strokes</li>
-              <li>Diagonal stress in the strokes</li>
-              <li>Slanted serifs on lower-case ascenders</li>
-            </ol>
-
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white leading-normal mt-6 mb-3">
-              Laying the best for Successful Prototyping
-            </h3>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              A serif is a small shape or projection that appears at the
-              beginning:
-            </p>
-            <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic text-gray-700 dark:text-gray-300">
-              <p className="text-lg leading-relaxed">
-                "Flowbite is just awesome. It contains tons of predesigned
-                components and pages, starting from login screens to complex
-                dashboards. A perfect choice for your next SaaS application."
-              </p>
-            </blockquote>
-
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white leading-snug mt-4 mb-2">
-              Code Example
-            </h4>
-
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              A serif is a small shape or projection that appears at the
-              beginning or end of a stroke on a letter. Typefaces with serifs
-              are called serif typefaces. Serif fonts are classified as one of
-              the following:
-            </p>
-
-            <pre className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md overflow-scroll">
-              <code className="language-html text-gray-900 dark:text-gray-300">
-                &lt;dl className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
-                gap-8 max-w-screen-md text-gray-900 dark:text-white mx-auto"&gt;
-                &lt;div className="flex flex-col justify-center items-center p-4
-                bg-white dark:bg-gray-900 rounded-lg shadow-md"&gt; &lt;dt
-                className="mb-2 text-3xl font-extrabold"&gt;73M+&lt;/dt&gt; &lt;dd
-                className="text-lg font-normal text-gray-500 dark:text-gray-400"&gt;
-                developers &lt;/dd&gt; &lt;/div&gt; &lt;div className="flex flex-col
-                justify-center items-center p-4 bg-white dark:bg-gray-900
-                rounded-lg shadow-md"&gt; &lt;dt className="mb-2 text-3xl
-                font-extrabold"&gt;1B+&lt;/dt&gt; &lt;dd className="text-lg
-                font-normal text-gray-500 dark:text-gray-400"&gt; contributors
-                &lt;/dd&gt; &lt;/div&gt; &lt;div className="flex flex-col
-                justify-center items-center p-4 bg-white dark:bg-gray-900
-                rounded-lg shadow-md"&gt; &lt;dt className="mb-2 text-3xl
-                font-extrabold"&gt;4M+&lt;/dt&gt; &lt;dd className="text-lg
-                font-normal text-gray-500 dark:text-gray-400"&gt; organizations
-                &lt;/dd&gt; &lt;/div&gt; &lt;/dl&gt;
-              </code>
-            </pre>
-
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white leading-snug mt-4 mb-2">
-              Table example
-            </h4>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              A serif is a small shape or projection that appears at the
-              beginning or end of a stroke on a letter.
-            </p>
-
-            <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100">
-              <thead className="bg-gray-200 dark:bg-gray-700">
-                <tr>
-                  <th className="px-6 py-3 text-left text-sm font-medium uppercase border-b dark:border-gray-600">
-                    Country
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium uppercase border-b dark:border-gray-600">
-                    Date & Time
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium uppercase border-b dark:border-gray-600">
-                    Amount
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b dark:border-gray-700">
-                  <td className="px-6 py-4">United States</td>
-                  <td className="px-6 py-4">April 21, 2021</td>
-                  <td className="px-6 py-4 font-bold">$2,300</td>
-                </tr>
-                <tr className="border-b dark:border-gray-700">
-                  <td className="px-6 py-4">Canada</td>
-                  <td className="px-6 py-4">May 31, 2021</td>
-                  <td className="px-6 py-4 font-bold">$300</td>
-                </tr>
-                <tr className="border-b dark:border-gray-700">
-                  <td className="px-6 py-4">United Kingdom</td>
-                  <td className="px-6 py-4">June 3, 2021</td>
-                  <td className="px-6 py-4 font-bold">$2,500</td>
-                </tr>
-                <tr className="border-b dark:border-gray-700">
-                  <td className="px-6 py-4">Australia</td>
-                  <td className="px-6 py-4">June 23, 2021</td>
-                  <td className="px-6 py-4 font-bold">$3,543</td>
-                </tr>
-                <tr className="border-b dark:border-gray-700">
-                  <td className="px-6 py-4">Germany</td>
-                  <td className="px-6 py-4">July 6, 2021</td>
-                  <td className="px-6 py-4 font-bold">$99</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4">France</td>
-                  <td className="px-6 py-4">August 23, 2021</td>
-                  <td className="px-6 py-4 font-bold">$2,540</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white leading-normal mt-6 mb-3">
-              Best practices for setting up your prototype
-            </h3>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              <strong>Low fidelity or high fidelity?</strong> Fidelity refers to
-              how close a prototype will be to the real deal. If you’re simply
-              preparing a quick visual aid for a presentation, a low-fidelity
-              prototype — like a wireframe with placeholder images and some
-              basic text — would be more than enough. But if you’re going for
-              more intricate usability testing, a high-fidelity prototype — with
-              on-brand colors, fonts and imagery — could help get more pointed
-              results.
-            </p>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              <strong>Consider your user</strong>. To create an intuitive user
-              flow, try to think as your user would when interacting with your
-              product. While you can fine-tune this during beta testing,
-              considering your user’s needs and habits early on will save you
-              time by setting you on the right path.
-            </p>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              <strong>Start from the inside out</strong>. A nice way to both
-              organize your tasks and create more user-friendly prototypes is by
-              building your prototypes ‘inside out’. Start by focusing on what
-              will be important to your user, like a Buy now button or an image
-              gallery, and list each element by order of priority. This way,
-              you’ll be able to create a prototype that puts your users’ needs
-              at the heart of your design.
-            </p>
-            <p className="lead text-base text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-              And there you have it! Everything you need to design and share
-              prototypes — right in Flowbite Figma.
-            </p>
+            <div dangerouslySetInnerHTML={{ __html: news.content }}></div>
           </article>
         </div>
       </main>
