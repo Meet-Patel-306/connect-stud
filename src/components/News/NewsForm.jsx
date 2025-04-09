@@ -25,8 +25,26 @@ export default function NewsCard() {
         types: ["heading", "paragraph"],
       }),
     ],
-    content:
-      "<blockquote><p><strong><em><s>meet</s></em></strong></p></blockquote>",
+    content: `
+      <h1><strong>Artificial Intelligence (AI)</strong></h1>
+      <p><em>AI is transforming industries at an unprecedented pace.</em></p>
+      <blockquote>
+        <p>"AI will never replace human creativity." — A myth </p>
+      </blockquote>
+
+      <h2>Applications Across Industries</h2>
+
+      <ul>
+        <li><strong>Healthcare:</strong> Early diagnosis using image recognition.</li>
+      </ul>
+
+      <h4>Sample Code</h4>
+      <blockquote><pre><code>const ai = new ArtificialIntelligence(); </code></pre></blockquote>
+
+      <p style="text-align: center;"><strong><em>“The future belongs to those who harness AI responsibly.”</em></strong></p>
+
+      <p style="text-align: right;">— <em>AI Research Lab</em></p>
+    `,
     editorProps: {
       handleKeyDown(view, event) {
         const { state, dispatch } = view;
