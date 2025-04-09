@@ -42,6 +42,7 @@ export default function News() {
   const newsData = useSelector((state) => state.newsData.news);
   return (
     <>
+      <NewsCard />
       {newsData.map((news) => (
         <NewsCard
           newsCategory={news.newsCategory}
@@ -55,6 +56,17 @@ export default function News() {
           key={news._id}
         />
       ))}
+      <NewsCard
+        newsCategory="{news.newsCategory}"
+        title="{news.title}"
+        newsIntro="{news.newsIntro}"
+        ownerName="{news.ownerName}"
+        ownerImage="{news.ownerImage}"
+        ownerLocation="{news.ownerLocation}"
+        date="{news.date}"
+        id="{news._id}"
+        key="{news._id}"
+      />
     </>
   );
 }
