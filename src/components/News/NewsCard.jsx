@@ -15,7 +15,7 @@ export default function NewsCard({
       <div className="py-4 lg:py-13 bg-gray-50 dark:bg-gray-800">
         <div className="px-4 mx-auto max-w-screen-xl">
           <div className="grid gap-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1"></div>
-          <div className="max-w-2xl sm:max-w-[450px] md:max-w-[450px] lg:max-w-[1300px] bg-white dark:bg-gray-800 text-black dark:text-white p-4 mx-auto shadow-xl rounded-3xl overflow-hidden mt-4">
+          <div className="max-w-2xl sm:max-w-[450px] md:max-w-[450px] lg:max-w-[1300px] bg-white dark:bg-gray-900 text-black dark:text-white p-4 mx-auto shadow-xl rounded-3xl overflow-hidden mt-4">
             <div className="lg:flex lg:items-start lg:gap-6">
               {/* Image Section */}
               <div className="lg:w-1/3">

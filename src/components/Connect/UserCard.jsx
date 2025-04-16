@@ -2,8 +2,8 @@ export default function UserCard() {
     return (
         <>
             <div class="w-full max-w-2xl sm:w-[90%] bg-white dark:bg-gray-800 dark:border-gray-700 rounded-lg shadow-md mx-auto">
-                <div id="234" class="flex flex-col items-center pb-10 bg-white dark:bg-gray-800 text-black dark:text-white p-4 shadow-xl rounded-3xl">
-                    <div class="max-w-2xl bg-white dark:bg-gray-800 text-black dark:text-white p-4 mx-auto overflow-hidden mt-4 flex items-center gap-3 lg:flex-row">
+                <div id="234" class="flex flex-col items-center pb-10 bg-white dark:bg-gray-900 text-black dark:text-white p-4 shadow-xl rounded-3xl">
+                    <div class="max-w-2xl bg-white dark:bg-gray-900 text-black dark:text-white p-4 mx-auto overflow-hidden mt-4 flex items-center gap-3 lg:flex-row">
                         <img
                             src="https://randomuser.me/api/portraits/men/45.jpg"
                             alt="Avatar"
@@ -14,6 +14,15 @@ export default function UserCard() {
                             <p class="text-sm text-gray-500 dark:text-gray-400">San Diego, California</p>
                             <span class="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
                         </div>
+                    </div>
+                    <div className="flex items-center gap-3 mt-2 px-3 py-1 bg-white dark:bg-gray-800 dark:border-gray-700 rounded-lg shadow-md mx-auto">
+                        <img
+                            src="8973d4473f428cb78cca39f82c15af3e.jpg"
+                            alt="Avatar"
+                            class="w-[20px] h-[20px] rounded-full shadow-lg"
+                        />
+                        Google
+
                     </div>
                     <div class="flex mt-4 md:mt-6">
                         <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">

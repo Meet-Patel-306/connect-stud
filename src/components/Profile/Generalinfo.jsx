@@ -44,8 +44,9 @@ export default function Generalinfo({
               <Popover data="You can change your profile photo here, you can upload a new photo from your computer." />
             )}
             <img
-              src="https://flowbite.com/application-ui/demo/images/users/joseph-mcfall.png"
-              className="rounded-md h-24 w-24 mt-6"
+              // src="https://flowbite.com/application-ui/demo/images/users/joseph-mcfall.png"
+              src="https://randomuser.me/api/portraits/men/45.jpg"
+              className="rounded-full h-24 w-24 mt-6"
             />
           </div>
           {/* name and work name */}
