@@ -25,8 +25,26 @@ export default function NewsCard() {
         types: ["heading", "paragraph"],
       }),
     ],
-    content:
-      "<blockquote><p><strong><em><s>meet</s></em></strong></p></blockquote>",
+    content: `
+      <h1><strong>Artificial Intelligence (AI)</strong></h1>
+      <p><em>AI is transforming industries at an unprecedented pace.</em></p>
+      <blockquote>
+        <p>"AI will never replace human creativity." — A myth </p>
+      </blockquote>
+
+      <h2>Applications Across Industries</h2>
+
+      <ul>
+        <li><strong>Healthcare:</strong> Early diagnosis using image recognition.</li>
+      </ul>
+
+      <h4>Sample Code</h4>
+      <blockquote><pre><code>const ai = new ArtificialIntelligence(); </code></pre></blockquote>
+
+      <p style="text-align: center;"><strong><em>“The future belongs to those who harness AI responsibly.”</em></strong></p>
+
+      <p style="text-align: right;">— <em>AI Research Lab</em></p>
+    `,
     editorProps: {
       handleKeyDown(view, event) {
         const { state, dispatch } = view;
@@ -109,11 +127,11 @@ export default function NewsCard() {
     <>
       <div className="flex justify-center items-center px-4 mt-4">
         <div className="relative bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg w-full max-w-sm md:max-w-[500px] lg:max-w-[650px] xl:max-w-[800px] 2xl:max-w-xl">
-          <div className="flex justify-end items-center ml-3">
-            <button type="button" onClick={handleCloseForm}>
-              <i className="fa-solid fa-xmark"></i>
+          {/* <div className="flex justify-end items-center ml-3">
+            <button type="button" className="bg-red-300 border border-gray-300 hover:border-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-1.5" onClick={handleCloseForm}>
+              <i className="fa-solid fa-xmark text-red-800"></i>
             </button>
-          </div>
+          </div> */}
           <form onSubmit={handleNewsSubmit}>
             <div className="mb-4">
               <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">
@@ -352,6 +370,28 @@ export default function NewsCard() {
             </div>
 
             <div className="flex justify-end gap-4 mt-4">
+              <button
+                type="button"
+                className="px-4 py-2 bg-gray-500 dark:bg-gray-600 text-white rounded-lg"
+                onClick={handleCloseForm}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="px-4 py-2 bg-red-500 dark:bg-red-600 text-white rounded-lg"
+                onClick={() => {
+                  setCategory("");
+                  setTitle("");
+                  setContent("");
+                  setNewsIntro("");
+                  setImageFile(null);
+                  setCountry("India");
+                }}
+              >
+                Reset
+              </button>
+              
               <button
                 type="submit"
                 className="px-4 py-2 bg-blue-500 dark:bg-blue-600 text-white rounded-lg"
