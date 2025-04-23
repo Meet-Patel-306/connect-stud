@@ -56,6 +56,7 @@ export default function Hackthone() {
           winner={hackathon.winner}
           firstRunnerUp={hackathon.firstRunnerUp}
           secondRunnerUp={hackathon.secondRunnerUp}
+          hackathonImage={hackathon.hackathonImage}
           id={hackathon._id}
           key={index}
         />

@@ -12,17 +12,17 @@ export default function CreatePostButton() {
         }`}
       >
         {/* hackathon */}
-        <button className="w-[52px] h-[52px] bg-gray-600 text-white rounded-full shadow border">
-          <a href="/hackathon/post">
+        <a href="/hackathon/post">
+          <button className="w-[52px] h-[52px] bg-gray-600 text-white rounded-full shadow border">
             <i className="fa-solid fa-code"></i>
-          </a>
-        </button>
+          </button>
+        </a>
         {/* News */}
-        <button className="w-[52px] h-[52px] bg-gray-600 text-white rounded-full shadow border">
-          <a href="/news/post">
+        <a href="/news/post">
+          <button className="w-[52px] h-[52px] bg-gray-600 text-white rounded-full shadow border">
             <i className="fa-solid fa-newspaper"></i>
-          </a>
-        </button>
+          </button>{" "}
+        </a>
       </div>
       {/* Main FAB */}
       <button

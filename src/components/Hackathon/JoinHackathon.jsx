@@ -18,7 +18,7 @@ export default function JoinHackathon({ closeButton, setCloseButton, id }) {
     try {
       const res = await axios.post(`${host}/api/hackathon/${id}/teamjoin`, {
         name: teamName,
-        id: userId,
+        userId: userId,
       });
       console.log(res);
       if (res.status == 201) {

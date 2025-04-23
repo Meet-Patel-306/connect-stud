@@ -14,10 +14,14 @@ export default function NewsCard() {
   const [category, setCategory] = useState("");
   const [newsIntro, setNewsIntro] = useState("");
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [newsContent, setNewsContent] = useState(
+    "<blockquote><p><strong><em><s>meet</s></em></strong></p></blockquote>"
+  );
   const [imageFile, setImageFile] = useState(null);
   const [country, setCountry] = useState("India");
+  // user data
   const user = useSelector((state) => state.userData);
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -67,9 +71,11 @@ export default function NewsCard() {
       },
     },
     onUpdate: ({ editor }) => {
-      setContent(editor.getHTML());
+      console.log(newsContent);
+      setNewsContent(editor.getHTML());
     },
   });
+
   const handleNewsSubmit = async (e) => {
     e.preventDefault();
     let date = new Date();
@@ -82,17 +88,24 @@ export default function NewsCard() {
     const news = {
       newsCategory: category,
       title: title,
-      content: content,
+      content: newsContent,
       newsIntro: newsIntro,
       ownerLocation: country,
       date: formattedDate,
+      owner: user._id,
+      ownerName: user.firstName + user.lastName,
     };
-    console.log(news);
+    // console.log(news);
+    const formData = new FormData();
+    formData.append("news", JSON.stringify(news));
+    if (imageFile) {
+      formData.append("imageFile", imageFile);
+    }
     try {
-      const res = await axios.post(newsPostRoutes, {
-        news,
-        userId: user._id,
-        userName: user.firstName + " " + user.lastName,
+      const res = await axios.post(newsPostRoutes, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
       if (res.status == 201) {
         toast.success(res.data.message);

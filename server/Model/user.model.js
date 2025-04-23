@@ -38,6 +38,12 @@ const userSchema = new mongoose.Schema({
       jobInfo: { type: String },
     },
   ],
+  ownerImage: {
+    type: String,
+    set: (v) =>
+      v ||
+      "https://archive.org/download/whatsapp-smiling-guy-i-accidentally-made/whatsapp%20generic%20person%20dark.jpg",
+  },
   hackathonTeam: [{ type: Schema.Types.ObjectId, ref: "Team" }],
 });
 

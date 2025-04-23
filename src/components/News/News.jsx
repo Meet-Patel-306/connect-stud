@@ -52,6 +52,7 @@ export default function News() {
           ownerLocation={news.ownerLocation}
           date={news.date}
           id={news._id}
+          newsImage={news.newsImage}
           key={news._id}
         />
       ))}

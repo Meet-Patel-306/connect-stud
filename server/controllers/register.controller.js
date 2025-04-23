@@ -1,8 +1,9 @@
 const User = require("../Model/user.model.js");
+const imagekit = require("../config/imagekit.config");
 
 const registerUser = async (req, res) => {
   try {
-    const userData = req.body;
+    const userData = JSON.parse(req.body.registerFormData);
 
     // Check if a user with the given email already exists
     const existingUser = await User.findOne({ email: userData.email });
@@ -21,10 +22,18 @@ const registerUser = async (req, res) => {
 
     const password = userData.password;
     delete userData.password;
-
+    let imageURL = "";
+    if (req.file && req.file.buffer) {
+      const image = await imagekit.upload({
+        file: req.file.buffer,
+        fileName: req.file.originalname + userUserName,
+      });
+      imageURL = image.url;
+    }
     // Create a new user instance
     const newUser = new User({
       username: userUserName,
+      ownerImage: imageURL,
       ...userData,
     });
     // Register the user (handles password hashing)

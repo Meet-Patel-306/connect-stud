@@ -1,6 +1,10 @@
 const router = require("express").Router();
 const News = require("../Model/news.model");
+const imagekit = require("../config/imagekit.config");
+const multer = require("multer");
 const mongoose = require("mongoose");
+
+const upload = multer({ storage: multer.memoryStorage() });
 //all news data
 router.get("/", async (req, res) => {
   try {
@@ -23,15 +27,25 @@ router.get("/", async (req, res) => {
 });
 
 // post news
-router.post("/post", async (req, res) => {
+router.post("/post", upload.single("imageFile"), async (req, res) => {
   try {
-    const newsData = req.body.news;
-    const { userId, userName, userImage } = req.body;
+    const newsData = JSON.parse(req.body.news);
+    let imageURL = "";
+    if (req.file && req.file.buffer) {
+      const image = await imagekit.upload({
+        file: req.file.buffer,
+        fileName: req.file.originalname + newsData.owner,
+      });
+      imageURL = image.url;
+    }
+    const [day, month, year] = newsData.date.split("/");
+    const formattedDate = new Date(`${year}-${month}-${day}`);
+    delete newsData.date;
     const newNews = new News({
       ...newsData,
-      owner: userId,
-      ownerName: userName,
-      ownerImage: userImage,
+      date: formattedDate,
+      newsImage: imageURL,
+      // ownerImage: userImage,
     });
     await newNews.save();
     res

@@ -13,6 +13,7 @@ export default function HackthoneCard({
   winner,
   firstRunnerUp,
   secondRunnerUp,
+  hackathonImage,
   id,
 }) {
   const [hackathonPopover, setHackathonPopover] = useState(false);
@@ -21,8 +22,9 @@ export default function HackthoneCard({
       <div className="bg-white grid sm:grid-cols-2 items-center shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full max-w-4xl max-sm:max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4 dark:bg-gray-800 dark:text-slate-100">
         <div className="min-h-[280px] h-full">
           <img
-            src="https://readymadeui.com/cardImg.webp"
-            className="w-full h-full object-cover"
+            src={hackathonImage}
+            className="w-auto h-[400px] object-contain"
+            loading="lazy"
           />
         </div>
         <div className="p-6">

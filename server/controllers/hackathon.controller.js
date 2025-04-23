@@ -1,7 +1,8 @@
-const User = require("../Model/hackathon.model");
+const User = require("../Model/user.model");
 const Hackathon = require("../Model/hackathon.model");
 const Team = require("../Model/team.model");
 const mongoose = require("mongoose");
+const imagekit = require("../config/imagekit.config");
 
 const allHackathonData = async (req, res) => {
   try {
@@ -28,7 +29,8 @@ const allHackathonData = async (req, res) => {
 
 const postHackathon = async (req, res) => {
   try {
-    const hackathonData = req.body.hackathonRegister;
+    const hackathonData = JSON.parse(req.body.hackathonFormData);
+    const ownerId = req.body.ownerId;
     const existHackathon = await Hackathon.findOne({
       hackathonName: hackathonData.hackathonName,
       startDate: hackathonData.startDate,
@@ -40,9 +42,18 @@ const postHackathon = async (req, res) => {
         register: "false",
       });
     } else {
+      let imageURL = "";
+      if (req.file && req.file.buffer) {
+        const image = await imagekit.upload({
+          file: req.file.buffer,
+          fileName: req.file.originalname + ownerId + hackathonData.startDate,
+        });
+        imageURL = image.url;
+      }
       const newHackathon = new Hackathon({
         ...hackathonData,
-        owner: hackathonData.id,
+        hackathonImage: imageURL,
+        owner: ownerId,
       });
       await newHackathon.save();
       res
@@ -77,7 +88,7 @@ const oneHackathonData = async (req, res) => {
 
 const createTeam = async (req, res) => {
   try {
-    const userId = req.body.id;
+    const userId = req.body.userId;
     const teamName = req.body.name;
     const { id } = req.params;
     const existTeam = await Team.findOne({ name: teamName });

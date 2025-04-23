@@ -66,12 +66,12 @@ export default function Parsonalinfo({
             <h3 className="font-semibold h-2 mx-2 mt-4 mb-8 text-md text-slate-400">
               {firstName + " " + lastName}
             </h3>
-            {biography.length > 0 && (
+            {biography?.length > 0 && (
               <h3 className="font-semibold h-2 mx-2 text-md text-gray-900 dark:text-white">
                 Biography
               </h3>
             )}
-            {biography.length > 0 && (
+            {biography?.length > 0 && (
               <h3 className="font-semibold  mx-2 mt-4 mb-8 text-md text-slate-400">
                 {biography}
               </h3>
@@ -81,7 +81,7 @@ export default function Parsonalinfo({
             </h3>
             <h3 className="font-semibold h-2 mx-2 mt-5 mb-8 text-md text-slate-400">
               <div className="flex">
-                {instagram.length > 0 && (
+                {instagram?.length > 0 && (
                   <a className="mr-3" href={instagram}>
                     <svg
                       className="h-5 w-5"
@@ -95,7 +95,7 @@ export default function Parsonalinfo({
                     </svg>
                   </a>
                 )}
-                {linkedin.length > 0 && (
+                {linkedin?.length > 0 && (
                   <a className="mr-3" href={linkedin}>
                     <svg
                       className="h-5 w-5"
@@ -109,7 +109,7 @@ export default function Parsonalinfo({
                     </svg>
                   </a>
                 )}
-                {github.length > 0 && (
+                {github?.length > 0 && (
                   <a className="mr-3" href={github}>
                     <svg
                       className="h-5 w-5"
@@ -123,7 +123,7 @@ export default function Parsonalinfo({
                     </svg>
                   </a>
                 )}
-                {portfolio.length > 0 && (
+                {portfolio?.length > 0 && (
                   <a className="mr-3" href={portfolio} target="_blank">
                     <svg
                       className="h-5 w-5"

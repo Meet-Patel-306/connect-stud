@@ -9,23 +9,23 @@ export default function NewsCard({
   ownerLocation,
   date,
   id,
+  newsImage,
 }) {
   return (
     <>
-      <div className="py-4 lg:py-13 bg-gray-50 dark:bg-gray-800">
+      <div className="py-1 lg:py-13 bg-gray-50 dark:bg-gray-900">
         <div className="px-4 mx-auto max-w-screen-xl">
           <div className="grid gap-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1"></div>
           <div className="max-w-2xl sm:max-w-[450px] md:max-w-[450px] lg:max-w-[1300px] bg-white dark:bg-gray-800 text-black dark:text-white p-4 mx-auto shadow-xl rounded-3xl overflow-hidden mt-4">
             <div className="lg:flex lg:items-start lg:gap-6">
               {/* Image Section */}
-              <div className="lg:w-1/3">
-                <a href="#">
-                  <img
-                    src="../../../public/360_F_210545946_H8K0CJih9ToRMqbBczgr2BLWJYcrNb1V.jpg"
-                    alt="tiger"
-                    className="w-full sm:w-80 md:w-64 lg:w-full rounded-lg object-cover mx-auto lg:mx-0"
-                  />
-                </a>
+              <div className="h-64 lg:w-1/3">
+                <img
+                  src={newsImage}
+                  alt="img"
+                  loading="lazy"
+                  className="w-full h-full object-contain rounded-lg"
+                />
               </div>
 
               {/* Profile & Content Section */}
