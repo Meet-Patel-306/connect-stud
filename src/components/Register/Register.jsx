@@ -16,6 +16,7 @@ import { ToastContainer, toast } from "react-toastify";
 export default function Register() {
   const [passwordValue, setPasswordValue] = useState("");
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
+  const [ownerImage, setOwnerImageFile] = useState(null);
 
   // get register data slice
   const dispatch = useDispatch();
@@ -27,7 +28,16 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(registerRoute, registerData);
+      const registerFormData = new FormData();
+      registerFormData.append("registerFormData", JSON.stringify(registerData));
+      if (ownerImage) {
+        registerFormData.append("ownerImage", ownerImage);
+      }
+      const res = await axios.post(registerRoute, registerFormData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       if (res.status === 201) {
         console.log(res);
         toast.success(res.data.message);
@@ -52,6 +62,17 @@ export default function Register() {
       >
         {/* Basic Personal Info */}
         <PersonalInfoInput />
+        <div className="mb-4">
+          <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">
+            Upload Image
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setOwnerImageFile(e.target.files[0])}
+            className="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+          />
+        </div>
         {/* password */}
         <PasswordInput
           passwordValue={passwordValue}

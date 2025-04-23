@@ -4,16 +4,27 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const User = require("./Model/user.model");
+const http = require("http");
+const { Server } = require("socket.io");
+
+const User = require("./Model/user.model.js");
+const Message = require("./Model/message.model.js");
+
 const registerRoutes = require("./routes/registerRoutes.js");
 const loginRoutes = require("./routes/loginRoutes.js");
 const profileRoutes = require("./routes/profileRoutes.js");
 const hackathonRoutes = require("./routes/hackathonRoutes.js");
 const newsRoutes = require("./routes/newsRoutes.js");
+const messageRoutes = require("./routes/messageRoutes.js");
 const path = require("path");
 const app = express();
 
 const cors = require("cors");
+//socket io
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: { origin: "http://localhost:5173", credentials: true },
+});
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -105,4 +116,36 @@ app.use("/api/profile", profileRoutes);
 app.use("/api/hackathon", hackathonRoutes);
 //news
 app.use("/api/news", newsRoutes);
-app.listen(3000);
+//message
+app.use("/api/messages", messageRoutes);
+// Socket.IO logic
+io.on("connection", (socket) => {
+  console.log("Socket connected:", socket.id);
+  // Join room with user's ID (client should send userId after connecting)
+  socket.on("join", (userId) => {
+    socket.join(userId);
+    console.log(`User ${userId} joined room`);
+  });
+  // Handle incoming messages
+  socket.on("sendMessage", async (data) => {
+    const newMessage = new Message({
+      ...data,
+      isRead: false,
+    });
+
+    try {
+      await newMessage.save();
+      console.log("Message saved");
+      // Send only to the receiver's room
+      io.to(data.receiver).emit("receiveMessage", newMessage);
+    } catch (err) {
+      console.error("Failed to save message:", err);
+    }
+  });
+  socket.on("disconnect", () => {
+    console.log("Socket disconnected:", socket.id);
+  });
+});
+
+server.listen(3000);
+module.exports = app;

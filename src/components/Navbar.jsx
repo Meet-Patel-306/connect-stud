@@ -8,6 +8,7 @@ import {
   selectHackathon,
   selectConnect,
 } from "../features/navbarSelectSlice";
+
 // import { setUserData } from "../features/userDataSlice";
 // import { profileAuthRoutes } from "../APIs/APIRoutes";
 // import axios from "axios";
@@ -27,32 +28,7 @@ function Navbar() {
   const isNews = useSelector((state) => state.navbarSelect.isNews);
   const isHackathon = useSelector((state) => state.navbarSelect.isHackathon);
   const isConnect = useSelector((state) => state.navbarSelect.isConnect);
-  // const userData = useSelector((state) => state.userData);
-
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     try {
-  //       console.log("navbar api call");
-  //       const res = await axios.get(profileAuthRoutes, {
-  //         withCredentials: true,
-  //       });
-  //       console.log(res.data);
-  //       dispatch(setUserData(res.data));
-  //     } catch (err) {
-  //       if (err.response?.status === 401) {
-  //         navigate("/login"); // Redirect if unauthorized
-  //       } else {
-  //         console.error("Failed to fetch user:", err);
-  //       }
-  //     }
-  //   };
-  //   if (userData == null) {
-  //     console.log(userData);
-  //     fetchUser();
-  //   }
-  // }, []);
-
+  const user = useSelector((state) => state.userData);
   return (
     <>
       <nav className="bg-white border-b-gray-900 border-b-2 dark:bg-gray-900">
@@ -92,10 +68,10 @@ function Navbar() {
               >
                 <div className="px-4 py-3">
                   <span className="block text-sm text-gray-900 dark:text-white">
-                    Bonnie Green
+                    {user?.firstName + " " + user?.lastName}
                   </span>
                   <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                    name@flowbite.com
+                    {user?.email}
                   </span>
                 </div>
                 <ul className="py-2" aria-labelledby="user-menu-button">

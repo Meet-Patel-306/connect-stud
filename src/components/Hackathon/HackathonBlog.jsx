@@ -32,7 +32,7 @@ export default function HackthoneBlog() {
           <div className="grid grid-flow-row grid-cols-1 bg-white shadow dark:bg-gray-800 p-5 rounded-lg">
             {/* image */}
             <div>
-              <img src="/Login.jpg" className="w-20 h-20" />
+              <img src={hackathon.hackathonImage} className="w-20 h-20" />
             </div>
             {/* name */}
             <h1 className="my-3 text-4xl font-semibold dark:text-white ">
