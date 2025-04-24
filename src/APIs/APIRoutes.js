@@ -6,3 +6,4 @@ export const hackathonRegisterRoutes = `${host}/api/hackathon/post`;
 export const hackathonDataRoutes = `${host}/api/hackathon`;
 export const newsDataRoutes = `${host}/api/news`;
 export const newsPostRoutes = `${host}/api/news/post`;
+export const allUsersDataRoutes = `${host}/api/profile/allusers`;

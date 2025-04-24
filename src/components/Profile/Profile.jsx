@@ -16,6 +16,7 @@ export default function Profile({ email }) {
             dateOfBirth={user.dateOfBirth}
             primaryLanguage={user.primaryLanguage}
             gender={user.gender}
+            ownerImage={user.ownerImage}
           />
           <Parsonalinfo
             firstName={user.firstName}

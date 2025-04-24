@@ -82,6 +82,7 @@ passport.use(
             lastName: profile.name.familyName,
             email: profile.emails[0].value,
             username: profile.emails[0].value.split("@")[0],
+            ownerImage: profile.photos[0].value,
           });
         }
         // console.log(profile);

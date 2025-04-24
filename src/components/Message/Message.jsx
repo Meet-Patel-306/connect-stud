@@ -9,8 +9,8 @@ import axios from "axios";
 
 export default function Message() {
   const socketRef = useRef(null);
-  // const { id } = useParams();
-  const id = "67d50fcc5d4a068cb8223b5e";
+  const { id } = useParams();
+  // const id = "67d50fcc5d4a068cb8223b5e";
   const userId = useSelector((state) => state.userData?._id);
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
@@ -20,16 +20,20 @@ export default function Message() {
         sender: userId,
         receiver: id,
         msg: message,
+        // timestamp: Date.now(),
+        timestamp: new Date().toISOString(),
       };
       socketRef.current.emit("sendMessage", msg);
       setChats((prev) => [...prev, msg]);
       setMessage("");
+      // msg.timestamp = new Date().toISOString();
       console.log(msg, message);
     } else {
       toast.warn("Empty message not send");
     }
   };
   useEffect(() => {
+    if (!userId) return;
     console.log("Creating socket connection");
     socketRef.current = io("http://localhost:3000");
 
@@ -41,12 +45,7 @@ export default function Message() {
       console.log("Incoming message:", message);
       setChats((prev) => [...prev, message]);
     });
-
-    return () => {
-      console.log("Disconnecting socket");
-      socketRef.current.disconnect();
-    };
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -55,7 +54,13 @@ export default function Message() {
           `http://localhost:3000/api/messages/${userId}/${id}`
         );
         console.log("Previous messages:", res.data);
-        setChats((pre) => [...pre, ...res.data]);
+        // setChats((pre) => [...pre, ...res.data]);
+        setChats((pre) => [
+          ...res.data.sort(
+            (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
+          ),
+          ...pre,
+        ]);
         // Optionally: setMessages(res.data)
       } catch (err) {
         console.error("Error fetching messages:", err);
@@ -65,9 +70,9 @@ export default function Message() {
     fetchMessages();
   }, [userId]);
 
-  useEffect(() => {
-    console.log("Updated chats:", chats);
-  }, [chats]);
+  // useEffect(() => {
+  //   console.log("Updated chats:", chats);
+  // }, [chats]);
   return (
     <>
       <div className="flex items-center p-4 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700 mb-4">
@@ -85,22 +90,23 @@ export default function Message() {
       </div>
       <div className="w-full">
         {chats.map((msg, index) => (
-          <>
+          <div key={index}>
             {msg.sender == userId && (
-              <Receiver
-                key={index}
+              <Sender
                 msg={msg.msg}
-                timestamp={
-                  msg.timestamp ? msg.timestamp.split("T")[0] : "Unknown"
-                }
+                timestamp={msg.timestamp ? msg.timestamp : "Unknown"}
               />
             )}
-          </>
+            {msg.sender == id && (
+              <Receiver
+                msg={msg.msg}
+                timestamp={msg.timestamp ? msg.timestamp : "Unknown"}
+              />
+            )}
+          </div>
         ))}
 
-        <Sender />
-
-        <div className="w-full px-4 pb-4" />
+        <div className="w-full px-4 pb-4 block mt-10" />
         <div className="w-full px-4 py-2 rounded-3xl border border-gray-200 flex items-center gap-2 bg-white dark:bg-gray-900 fixed bottom-0 left-0 z-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"

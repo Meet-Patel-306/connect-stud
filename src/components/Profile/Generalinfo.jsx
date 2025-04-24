@@ -8,6 +8,7 @@ export default function Generalinfo({
   dateOfBirth,
   primaryLanguage,
   gender,
+  ownerImage,
 }) {
   const [openPopover, setOpenPopover] = useState(false);
   return (
@@ -44,8 +45,9 @@ export default function Generalinfo({
               <Popover data="You can change your profile photo here, you can upload a new photo from your computer." />
             )}
             <img
-              src="https://flowbite.com/application-ui/demo/images/users/joseph-mcfall.png"
+              src={ownerImage}
               className="rounded-md h-24 w-24 mt-6"
+              loading="lazy"
             />
           </div>
           {/* name and work name */}

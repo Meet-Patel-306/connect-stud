@@ -15,6 +15,7 @@ import Register from "./components/Register/Register.jsx";
 import Login from "./components/Login/Login.jsx";
 import Error from "./components/404/error.jsx";
 import Profile from "./components/Profile/Profile.jsx";
+import Message from "./components/Message/Message.jsx";
 import "./index.css";
 import { store } from "./app/store.js";
 import { Provider } from "react-redux";
@@ -39,6 +40,7 @@ createRoot(document.getElementById("root")).render(
               <Route path=":id" element={<HackthoneBlog />} />
             </Route>
             <Route path="connect" element={<Connect />} />
+            <Route path="message/:id" element={<Message />} />
             <Route path="profile" element={<Profile />} />
             <Route path="*" element={<Error />} />
           </Route>
