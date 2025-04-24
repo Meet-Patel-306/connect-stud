@@ -157,7 +157,20 @@ export default function PersonalInfoInput() {
             required
           />
         </div>
-        <div className="flex items-center ps-4 dark:border-gray-700">
+
+        <label
+          htmlFor="gender"
+          className="block text-sm font-medium text-gray-900 dark:text-white dark:bg-black"
+        >
+          Gender<span className="required-input">*</span>
+        </label>
+        <label
+          htmlFor="gender"
+          className="block text-sm font-medium text-gray-900 dark:text-white"
+        >
+        </label>
+        
+        <div className="flex items-center ps-4 dark:border-gray-700 dark:bg-black">
           <input
             id="male"
             type="radio"

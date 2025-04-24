@@ -60,6 +60,9 @@ export default function Register() {
         className="mx-5 md:mx-20 lg:mx-72 my-5 bg-white shadow dark:bg-gray-800 p-5 rounded-lg"
         onSubmit={handleSubmit}
       >
+        <h2 className="text-gray-800 text-center text-2xl font-bold dark:text-white mb-5">
+          Register
+        </h2>
         {/* Basic Personal Info */}
         <PersonalInfoInput />
         <div className="mb-4">

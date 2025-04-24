@@ -72,7 +72,7 @@ export default function Login() {
                       type="text"
                       required
                       className="input-tag "
-                      placeholder="Enter user name"
+                      placeholder="Enter Username"
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
@@ -91,6 +91,7 @@ export default function Login() {
                       type={visibilityEyeLogin ? "text" : "password"}
                       required
                       className="input-passowrd-tag"
+                      placeholder="Enter Password"
                       onChange={(e) => setPassword(e.target.value)}
                     />
 
@@ -112,10 +113,19 @@ export default function Login() {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-between gap-4 dark:bg-gray-700">
+                <div className="text-center text-gray-800 text-sm mb-2 block dark:text-white">
+                  <span>Don't have an account?  
+                    <a href="/register"
+                       className="underline decoration-solid text-blue-600 hover:text-blue-700 font-semibold dark:text-blue-500 dark:hover:text-blue-400">
+                       Sign up
+                    </a>
+                  </span>
+                </div>
+
+                {/* <div className="flex flex-wrap items-center justify-between gap-4 dark:bg-gray-700">
                   <div className="flex items-center dark:bg-gray-700"></div>
                   <div className="text-sm dark:bg-gray-700"></div>
-                </div>
+                </div> */}
 
                 <div className="!mt-8 dark:bg-gray-700">
                   <button
