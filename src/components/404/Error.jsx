@@ -1,5 +1,5 @@
 import "../../error.css";
-import error2 from "../../../public/404.png";
+import Logo from "../../../public/connectStud.png";
 
 export default function Error() {
   return (
@@ -9,8 +9,8 @@ export default function Error() {
           <div className="custom-navbar">
             <div className="brand-logo">
               <img
-                src="http://salehriaz.com/404Page/img/logo.svg"
-                width="80px"
+                src={Logo}
+                width="500px"
                 alt="Logo"
               />
             </div>
@@ -22,14 +22,6 @@ export default function Error() {
               width="300px"
               alt="404"
             />
-            <a
-              href="http://salehriaz.com/404Page/404.html"
-              className="btn-go-home"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GO BACK HOME
-            </a>
           </div>
           <div className="objects">
             <img

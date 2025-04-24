@@ -108,6 +108,7 @@ const createTeam = async (req, res) => {
     //find user
     const user = await User.findById(userId);
     if (!user) {
+      console.log(userId);
       return res.status(404).json({ message: "User Data Not Found" });
     }
     // Check if the user has already joined a team in this hackathon
