@@ -82,15 +82,6 @@ export default function HackathonAboutInput() {
             className="h-min-52 border rounded-md border-black text-gray-800 p-1 dark:text-white tiptap"
           />
         </div>
-        <button
-          onClick={() => {
-            const html = editor.getHTML();
-            console.log(html); // Optional: Show it in an alert
-          }}
-          className="p-1 border border-l-0 border-black h-8 w-auto rounded-none my-2 mx-0 bg-green-500 text-white"
-        >
-          Get Data
-        </button>
       </div>
       <div>
         <label

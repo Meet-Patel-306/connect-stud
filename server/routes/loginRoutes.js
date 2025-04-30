@@ -1,4 +1,7 @@
 const passport = require("passport");
+const path = require("path");
+//.env config
+require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 const {
   localUserLogin,
   logOutUser,
@@ -16,11 +19,11 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:5173/login",
+    failureRedirect: ,
   }),
   (req, res) => {
     // Successful authentication, redirect '/' page.
-    res.redirect("http://localhost:5173/");
+    res.redirect(process.env.HOST_FRONTEND);
   }
 );
 module.exports = router;
