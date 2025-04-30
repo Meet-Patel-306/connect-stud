@@ -1,11 +1,11 @@
 const passport = require("passport");
-const path = require("path");
-//.env config
-require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 const {
   localUserLogin,
   logOutUser,
 } = require("../controllers/login.controller.js");
+const path = require("path");
+//.env config
+require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 const router = require("express").Router();
 
 router.post("/login", localUserLogin);
@@ -19,7 +19,7 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: ,
+    failureRedirect: `${process.env.HOST_FRONTEND}/login`,
   }),
   (req, res) => {
     // Successful authentication, redirect '/' page.

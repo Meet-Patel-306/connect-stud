@@ -36,7 +36,7 @@ app.use(
 
 //.env config
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
-// console.log(process.env.MONGO_URL);
+console.log(process.env.MONGO_URL);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -76,7 +76,7 @@ passport.use(
           $or: [{ googleId: profile.id }, { email: profile.emails[0].value }],
         });
 
-        // console.log(profile);
+        console.log(profile);
         if (!user) {
           user = await User.create({
             googleId: profile.id,
@@ -128,7 +128,7 @@ io.on("connection", (socket) => {
   // Join room with user's ID (client should send userId after connecting)
   socket.on("join", (userId) => {
     socket.join(userId);
-    // console.log(`User ${userId} joined room`);
+    console.log(`User ${userId} joined room`);
   });
   // Handle incoming messages
   socket.on("sendMessage", async (data) => {
