@@ -7,6 +7,7 @@ import { useState } from "react";
 export default function PersonalInfoInput() {
   // get register data slice
   const dispatch = useDispatch();
+  const registerData = useSelector((state) => state.registerData);
   const [phone, setPhone] = useState("");
   return (
     <>
@@ -22,6 +23,7 @@ export default function PersonalInfoInput() {
           <input
             type="text"
             name="firstName"
+            value={registerData?.firstName || ""}
             id="first_name"
             className="input-tag"
             placeholder="John"
@@ -48,6 +50,7 @@ export default function PersonalInfoInput() {
             type="text"
             id="last_name"
             name="lastName"
+            value={registerData?.lastName || ""}
             className="input-tag"
             placeholder="Doe"
             autoComplete="off"
@@ -73,6 +76,7 @@ export default function PersonalInfoInput() {
           <input
             type="email"
             id="email"
+            value={registerData?.email || ""}
             name="email"
             className="input-tag"
             placeholder="john.doe@company.com"
@@ -119,6 +123,7 @@ export default function PersonalInfoInput() {
           <input
             type="date"
             id="dob"
+            value={registerData?.dateOfBirth?.split("T")[0] || ""}
             name="dateOfBirth"
             className="input-tag"
             onChange={(e) =>
@@ -143,6 +148,7 @@ export default function PersonalInfoInput() {
             type="text"
             id="country"
             name="country"
+            value={registerData?.country || ""}
             className="input-tag"
             placeholder="Country"
             autoComplete="off"

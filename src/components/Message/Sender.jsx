@@ -1,7 +1,7 @@
-export default function Sender({ msg, timestamp }) {
+export default function Sender({ msg, timestamp, senderImage }) {
   return (
     <>
-      <div className="flex gap-2.5 justify-end pb-0">
+      <div className="flex gap-2.5 justify-end pb-0 mr-5">
         <div>
           <div className="grid mb-0">
             <h5 className="text-right text-gray-900 text-sm font-semibold leading-snug pb-1 dark:text-white">
@@ -12,17 +12,20 @@ export default function Sender({ msg, timestamp }) {
                 {msg}
               </h2>
             </div>
-            <div className="justify-start items-center inline-flex">
-              <h3 className="text-gray-500 text-xs font-normal leading-4 py-1">
-                {timestamp}
-              </h3>
+            <div className="flec-col justify-end items-center mb-2.5">
+              <h6 className="text-gray-500 text-xs font-normal leading-4 pt-1">
+                {timestamp.split("T")[0]}
+              </h6>
+              <h6 className="text-gray-500 text-xs font-normal leading-4 py-1">
+                {timestamp.split("T")[1].split(".")[0]}
+              </h6>
             </div>
           </div>
         </div>
         <img
-          src="https://pagedone.io/asset/uploads/1704091591.png"
+          src={senderImage}
           alt="Hailey image"
-          className="w-10 h-11"
+          className="w-10 h-11 rounded-full"
         />
       </div>
     </>

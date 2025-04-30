@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { host } from "../../APIs/APIRoutes";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
-export default function JoinHackathon({ closeButton, setCloseButton, id }) {
+export default function JoinHackathon({
+  closeButton,
+  setCloseButton,
+  id,
+  userTeamId,
+}) {
   const [craeteTeam, setCreateTeam] = useState(true);
   const [joinTeam, setJoinTeam] = useState(false);
   const [teamName, setTeamName] = useState("");
@@ -12,6 +17,11 @@ export default function JoinHackathon({ closeButton, setCloseButton, id }) {
   const [isCopy, setIsCopy] = useState(false);
   const userId = useSelector((state) => state.userData?._id);
 
+  useEffect(() => {
+    setTeamJoinId(userTeamId);
+  }, [userTeamId]);
+
+  console.log("team ", teamJoinId, "id user ", userTeamId);
   const handelCreateTeam = async (e) => {
     e.preventDefault();
     console.log(userId);

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setNews } from "../../features/newsDataSlice";
 import { useInView } from "react-intersection-observer";
 import { newsDataRoutes } from "../../APIs/APIRoutes";
+import { host } from "../../APIs/APIRoutes";
 import axios from "axios";
 export default function News() {
   const dispatch = useDispatch();
@@ -11,7 +12,12 @@ export default function News() {
   const [Loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [newsValue, setNewsValue] = useState([]);
   const { ref, inView } = useInView();
+  //serch bar
+  const [selectedField, setSelectedField] = useState("title");
+  const [keyword, setKeyword] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   useEffect(() => {
     const fetchNews = async () => {
       if (!hasMore) return;
@@ -39,10 +45,140 @@ export default function News() {
       setPage((prevPage) => prevPage + 1);
     }
   }, [inView, hasMore]);
+  //search bar
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const selectCategory = (field) => {
+    setSelectedField(field);
+    setDropdownOpen(false);
+  };
+  const handleSearchSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `${host}/api/news/search?${selectedField}=${keyword}`
+      );
+      console.log("Results:", res.data);
+      setNewsValue(res.data);
+    } catch (error) {
+      console.error("Error fetching hackathons:", error);
+    }
+    setLoading(false);
+  };
+
   const newsData = useSelector((state) => state.newsData.news);
+
+  useEffect(() => {
+    const getNewsValue = () => {
+      setNewsValue(newsData);
+    };
+    getNewsValue();
+  }, [newsData]);
   return (
     <>
-      {newsData.map((news) => (
+      {/* search bar */}
+      <div className="w-auto mx-10 my-2">
+        <form onSubmit={handleSearchSubmit}>
+          <div className="flex">
+            <label
+              htmlFor="search-dropdown"
+              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+            >
+              Search Hackathons
+            </label>
+
+            {/* Dropdown Button */}
+            <button
+              id="dropdown-button"
+              type="button"
+              onClick={toggleDropdown}
+              className="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+            >
+              <span className="capitalize">{selectedField}</span>
+              <svg
+                className="w-2.5 h-2.5 ml-2.5"
+                aria-hidden="true"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
+            </button>
+
+            {/* Dropdown Menu */}
+            {dropdownOpen && (
+              <div
+                id="dropdown"
+                className="z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"
+              >
+                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => selectCategory("title")}
+                      className="w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Title
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => selectCategory("newsCategory")}
+                      className="w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      News Category
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+
+            {/* Search Input */}
+            <div className="relative w-full">
+              <input
+                type="search"
+                id="search-input"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+                className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                placeholder="Search News by name and category ..."
+                required
+              />
+              <button
+                type="submit"
+                className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                <svg
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+                <span className="sr-only">Search</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      {newsValue.map((news) => (
         <NewsCard
           newsCategory={news.newsCategory}
           title={news.title}

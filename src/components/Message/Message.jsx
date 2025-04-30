@@ -1,17 +1,50 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Sender from "../Message/Sender";
 import Receiver from "../Message/Receiver";
 import io from "socket.io-client";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { host } from "../../APIs/APIRoutes";
+import { setAllUserData } from "../../features/allUserDataSlice";
 
 export default function Message() {
+  const dispatch = useDispatch();
   const socketRef = useRef(null);
   const { id } = useParams();
-  // const id = "67d50fcc5d4a068cb8223b5e";
+  const bottomRef = useRef(null);
+  //sender
   const userId = useSelector((state) => state.userData?._id);
+  const user = useSelector((state) => state.userData);
+  //receiver
+  const allUser = useSelector((state) => state.allUserData.allUser);
+  const [receiver, setReceiver] = useState(null);
+  useEffect(() => {
+    const fetchReceiverUser = async () => {
+      if (!allUser.some((u) => u._id === id)) {
+        try {
+          const res = await axios.get(`${host}/api/profile/${id}`, {
+            withCredentials: true,
+          });
+          // console.log("api call", res.data);
+          setReceiver(res.data); // Set receiver state
+          dispatch(setAllUserData([res.data])); // Update Redux state
+        } catch (err) {
+          console.error("Failed to fetch receiver user:", err);
+        }
+      } else {
+        const foundReceiver = allUser.find((u) => u._id === id);
+        // console.log("no api call", foundReceiver);
+        setReceiver(foundReceiver); // Set receiver state
+      }
+    };
+    if (!receiver) {
+      fetchReceiverUser();
+    }
+  }, [id]);
+
+  // console.log("recr", receiver);
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
   const handleSendMessage = () => {
@@ -27,11 +60,16 @@ export default function Message() {
       setChats((prev) => [...prev, msg]);
       setMessage("");
       // msg.timestamp = new Date().toISOString();
-      console.log(msg, message);
+      // console.log(msg, message);
     } else {
       toast.warn("Empty message not send");
     }
   };
+  // bottom msg
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chats]);
+
   useEffect(() => {
     if (!userId) return;
     console.log("Creating socket connection");
@@ -75,37 +113,41 @@ export default function Message() {
   // }, [chats]);
   return (
     <>
-      <div className="flex items-center p-4 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700 mb-4">
-        <img
-          src="https://pagedone.io/asset/uploads/1710412177.png"
-          alt="Profile"
-          className="w-12 h-12 rounded-full"
-        />
-        <div className="ml-3">
-          <p className="font-semibold text-gray-900 dark:text-gray-100">
-            Shanay Cruz
-          </p>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Online</p>
+      <a href={`/profile/${id}`}>
+        <div className="flex items-center p-4 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700 mb-4">
+          <img
+            src="https://pagedone.io/asset/uploads/1710412177.png"
+            alt="Profile"
+            className="w-12 h-12 rounded-full"
+          />
+          <div className="ml-3">
+            <p className="font-semibold text-gray-900 dark:text-gray-100">
+              {receiver?.firstName + " " + receiver?.lastName}
+            </p>
+          </div>
         </div>
-      </div>
-      <div className="w-full">
+      </a>
+      <div className="w-full overflow-y-auto">
         {chats.map((msg, index) => (
           <div key={index}>
             {msg.sender == userId && (
               <Sender
                 msg={msg.msg}
                 timestamp={msg.timestamp ? msg.timestamp : "Unknown"}
+                senderImage={user?.ownerImage}
               />
             )}
             {msg.sender == id && (
               <Receiver
                 msg={msg.msg}
                 timestamp={msg.timestamp ? msg.timestamp : "Unknown"}
+                name={receiver?.firstName + " " + receiver?.lastName}
+                receiverImage={receiver?.ownerImage}
               />
             )}
           </div>
         ))}
-
+        <div ref={bottomRef} />
         <div className="w-full px-4 pb-4 block mt-10" />
         <div className="w-full px-4 py-2 rounded-3xl border border-gray-200 flex items-center gap-2 bg-white dark:bg-gray-900 fixed bottom-0 left-0 z-10">
           <svg

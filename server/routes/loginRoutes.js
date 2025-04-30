@@ -1,9 +1,12 @@
 const passport = require("passport");
-const localUserLogin = require("../controllers/login.controller.js");
+const {
+  localUserLogin,
+  logOutUser,
+} = require("../controllers/login.controller.js");
 const router = require("express").Router();
 
 router.post("/login", localUserLogin);
-
+router.get("/logout", logOutUser);
 //google login
 router.get(
   "/google",

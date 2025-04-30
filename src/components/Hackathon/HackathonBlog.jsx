@@ -7,7 +7,9 @@ import axios from "axios";
 
 export default function HackthoneBlog() {
   const { id } = useParams();
+  const user = useSelector((state) => state.userData);
   const [hackathon, setHackathon] = useState(null);
+  const [userTeamId, setUserTeamId] = useState("");
   let hackathonData = useSelector((state) =>
     state.hackathonData.hackathons.find((hackathon) => hackathon._id === id)
   );
@@ -23,6 +25,23 @@ export default function HackthoneBlog() {
     }
   }, [id]);
   console.log(hackathon);
+  useEffect(() => {
+    const checkUserTeam = () => {
+      for (let userTeam of user?.hackathonTeam || []) {
+        for (let team of hackathon?.teams || []) {
+          if (team === userTeam) {
+            console.log("yes");
+            setUserTeamId(team);
+            return; // early exit
+          } else {
+            console.log("team", team, "userTeam", userTeam);
+          }
+        }
+      }
+    };
+    checkUserTeam();
+  }, [id, user, hackathon]);
+
   const [closeButton, setCloseButton] = useState(false);
   return (
     <>
@@ -51,7 +70,8 @@ export default function HackthoneBlog() {
               <div className="flex items-center mt-2">
                 <i className="fa-regular fa-calendar mr-2"></i>
                 <h1 className="text-sm">
-                  {hackathon.startDate} - {hackathon.endDate}
+                  {hackathon?.startDate?.split("T")[0]} -{" "}
+                  {hackathon?.endDate?.split("T")[0]}
                 </h1>
               </div>
               <div className="flex items-center mt-2">
@@ -72,6 +92,7 @@ export default function HackthoneBlog() {
           <JoinHackathon
             closeButton={closeButton}
             setCloseButton={setCloseButton}
+            userTeamId={userTeamId}
             id={id}
           />
           {/* total register,total prize, team size,start date  */}
@@ -82,7 +103,7 @@ export default function HackthoneBlog() {
               </div>
               <div className="mx-2">
                 <p className="text-gray-600 dark:text-slate-400">Registered</p>
-                <p className="dark:text-white">111</p>
+                <p className="dark:text-white">{hackathon?.teams.length}</p>
               </div>
             </div>
             <div className="flex items-center my-2 mx-2">
@@ -91,7 +112,7 @@ export default function HackthoneBlog() {
               </div>
               <div className="mx-2">
                 <p className="text-gray-600 dark:text-slate-400">Team Size</p>
-                <p className="dark:text-white">{hackathon.teamSuze}</p>
+                <p className="dark:text-white">{hackathon.teamSize}</p>
               </div>
             </div>
             <div className="flex items-center my-2 mx-2">
@@ -171,8 +192,12 @@ export default function HackthoneBlog() {
                 <i className="fa-solid fa-address-book"></i>
               </div>
               <div className="mx-2">
-                <p className="dark:text-white text-sm">Meet Patel</p>
-                <p className="dark:text-white text-sm">MeetPatel@gamil.com</p>
+                <p className="dark:text-white text-sm">
+                  {hackathon.organizerName}
+                </p>
+                <p className="dark:text-white text-sm">
+                  {hackathon.organizerEmail}
+                </p>
               </div>
             </div>
           </div>

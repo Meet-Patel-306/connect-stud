@@ -3,16 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRegisterData } from "../../features/registerDataSlice.js";
 
 export default function ExperienceInput() {
+  const registerData = useSelector((state) => state.registerData);
+
   const [startJobYearValue, setStartJobYearValue] = useState("");
   const [endJobYearValue, setEndJobYearValue] = useState("");
   const [companyValue, setCompanyValue] = useState("");
   const [jobInfo, setJobInfo] = useState("");
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(registerData?.experiences || []);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getRegisterData({ name: "experiences", value: jobs }));
   }, [jobs]);
+  useEffect(() => {
+    if (registerData.experiences && registerData.experiences.length > 0) {
+      setJobs(registerData.experiences);
+    }
+  }, [registerData?.experiences]);
+
   return (
     <>
       <div>

@@ -23,5 +23,13 @@ const localUserLogin = (req, res, next) => {
     });
   })(req, res, next);
 };
+const logOutUser = (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Error logging out" });
+    }
+    res.json({ message: "User Log out succesfully" }); // Redirect user after logging out (or any other route you prefer)
+  });
+};
 
-module.exports = localUserLogin;
+module.exports = { localUserLogin, logOutUser };

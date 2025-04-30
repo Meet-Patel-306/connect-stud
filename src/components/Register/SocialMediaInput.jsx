@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getRegisterData } from "../../features/registerDataSlice.js";
 
 export default function SocialMediaInput() {
   const dispatch = useDispatch();
+  const registerData = useSelector((state) => state.registerData);
   return (
     <>
       <div className="grid gap-3 mb-6 grid-cols-2">
@@ -16,6 +17,7 @@ export default function SocialMediaInput() {
           <input
             type="text"
             id="instagram"
+            value={registerData?.instagram || ""}
             name="instagram"
             className="input-tag"
             placeholder="www.instagram.com/userid"
@@ -41,6 +43,7 @@ export default function SocialMediaInput() {
             type="text"
             id="linkedin"
             name="linkedin"
+            value={registerData?.linkedin || ""}
             className="input-tag"
             placeholder="www.linkedin.com/userid"
             autoComplete="off"
@@ -65,6 +68,7 @@ export default function SocialMediaInput() {
             type="text"
             id="github"
             name="github"
+            value={registerData?.github || ""}
             className="input-tag"
             placeholder="www.github.com/userid"
             autoComplete="off"
@@ -89,6 +93,7 @@ export default function SocialMediaInput() {
             type="text"
             id="portfolio"
             name="portfolio"
+            value={registerData?.portfolio || ""}
             className="input-tag"
             placeholder="www.website.com"
             autoComplete="off"

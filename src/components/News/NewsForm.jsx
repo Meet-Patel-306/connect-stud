@@ -93,6 +93,7 @@ export default function NewsCard() {
       ownerLocation: country,
       date: formattedDate,
       owner: user._id,
+      ownerImage: user.ownerImage,
       ownerName: user.firstName + user.lastName,
     };
     // console.log(news);

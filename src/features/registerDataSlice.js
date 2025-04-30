@@ -1,17 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
+  firstName: "dsfs",
+  lastName: "ds",
+  email: "meetpatel.genai.2024@gmail.com",
+  password: "Meet@306",
   phoneNo: "",
   dateOfBirth: "",
-  country: "",
+  country: "fsd",
   gender: "",
   jobtitle: "",
   biography: "",
-  primaryLanguage: "",
+  primaryLanguage: "sfsfd",
   languages: [],
   instagram: "",
   linkedin: "",

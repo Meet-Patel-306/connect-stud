@@ -1,12 +1,12 @@
-export default function Receiver({ msg, timestamp }) {
+export default function Receiver({ msg, timestamp, name, receiverImage }) {
   return (
     <>
-      <div className="grid pb-0">
+      <div className="grid pb-0 ml-5">
         <div className="flex gap-2.5 mb-0">
           <img
-            src="https://pagedone.io/asset/uploads/1710412177.png"
+            src={receiverImage}
             alt="Shanay image"
-            className="w-10 h-11"
+            className="w-10 h-11 rounded-full"
           />
           <div className="grid">
             <h5 className="text-gray-900 text-sm font-semibold leading-snug pb-1 dark:text-white">
@@ -18,9 +18,12 @@ export default function Receiver({ msg, timestamp }) {
                   {msg}
                 </h5>
               </div>
-              <div className="justify-end items-center inline-flex mb-2.5">
+              <div className="flec-col justify-end items-center mb-2.5">
+                <h6 className="text-gray-500 text-xs font-normal leading-4 pt-1">
+                  {timestamp.split("T")[0]}
+                </h6>
                 <h6 className="text-gray-500 text-xs font-normal leading-4 py-1">
-                  {timestamp}
+                  {timestamp.split("T")[1].split(".")[0]}
                 </h6>
               </div>
             </div>

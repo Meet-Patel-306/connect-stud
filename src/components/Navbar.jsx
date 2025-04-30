@@ -8,6 +8,11 @@ import {
   selectHackathon,
   selectConnect,
 } from "../features/navbarSelectSlice";
+import { host } from "../APIs/APIRoutes";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
+import { clearUserData } from "../features/userDataSlice";
 
 // import { setUserData } from "../features/userDataSlice";
 // import { profileAuthRoutes } from "../APIs/APIRoutes";
@@ -23,12 +28,23 @@ function Navbar() {
     setIsDropDown(!isDropDown);
   };
   //link selector
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isHome = useSelector((state) => state.navbarSelect.isHome);
   const isNews = useSelector((state) => state.navbarSelect.isNews);
   const isHackathon = useSelector((state) => state.navbarSelect.isHackathon);
   const isConnect = useSelector((state) => state.navbarSelect.isConnect);
   const user = useSelector((state) => state.userData);
+  const handleLogout = async () => {
+    try {
+      const res = await axios.get(`${host}/auth/logout`);
+      toast.success(res.data.message);
+      dispatch(clearUserData());
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <nav className="bg-white border-b-gray-900 border-b-2 dark:bg-gray-900">
@@ -88,7 +104,9 @@ function Navbar() {
                       href="#"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
-                      Sign out
+                      <button type="button" onClick={handleLogout}>
+                        Sign out
+                      </button>
                     </a>
                   </li>
                 </ul>

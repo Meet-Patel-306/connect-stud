@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const methodOverride = require("method-override");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
@@ -18,6 +19,7 @@ const newsRoutes = require("./routes/newsRoutes.js");
 const messageRoutes = require("./routes/messageRoutes.js");
 const path = require("path");
 const app = express();
+app.use(methodOverride("_method"));
 
 const cors = require("cors");
 //socket io
@@ -82,7 +84,8 @@ passport.use(
             lastName: profile.name.familyName,
             email: profile.emails[0].value,
             username: profile.emails[0].value.split("@")[0],
-            ownerImage: profile.photos[0].value,
+            ownerImage:
+              "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg",
           });
         }
         // console.log(profile);

@@ -3,15 +3,21 @@ import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import UserCard from "./UserCard";
-import Message from "../Message/Message";
 import { allUsersDataRoutes } from "../../APIs/APIRoutes";
+import { host } from "../../APIs/APIRoutes";
 import { setAllUserData } from "../../features/allUserDataSlice";
+import { toast } from "react-toastify";
 export default function Connect() {
   const dispatch = useDispatch();
   const [Loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const { ref, inView } = useInView();
+  const [allUserValue, setAllUserValue] = useState([]);
+  //serch bar
+  const [selectedField, setSelectedField] = useState("Name");
+  const [keyword, setKeyword] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   useEffect(() => {
     const fetchUsers = async () => {
       if (!hasMore) return;
@@ -25,11 +31,11 @@ export default function Connect() {
         if (res.data.users.length === 0) {
           setHasMore(false);
         } else {
-          console.log(res.data.users);
           dispatch(setAllUserData(res.data.users));
         }
       } catch (err) {
-        console.error("Failed to fetch:", err);
+        // console.error("Failed to fetch:", err);
+        toast.err("Failed To Get User Try again");
       }
     };
     setLoading(false);
@@ -45,26 +51,169 @@ export default function Connect() {
       setPage((prevPage) => prevPage + 1);
     }
   }, [inView, hasMore]);
+  //search bar
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const selectCategory = (field) => {
+    setSelectedField(field);
+    setDropdownOpen(false);
+  };
+  const handleSearchSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `${host}/api/profile/search?${selectedField}=${keyword}`
+      );
+      // console.log("Results:", res.data);
+      setAllUserValue(res.data);
+    } catch (error) {
+      console.error("Error fetching hackathons:", error);
+    }
+    setLoading(false);
+  };
   const allUserData = useSelector((state) => state.allUserData.allUser);
-  console.log(allUserData);
+  useEffect(() => {
+    const getAllUserValue = () => {
+      setAllUserValue(allUserData);
+    };
+    getAllUserValue();
+  }, [allUserData]);
+  // console.log("all user: ", allUserData);
   return (
     <>
-      <section
-        aria-labelledby="connect-title"
-        className="flex flex-col items-center bg-gray-50 dark:bg-gray-800"
-      >
-        <header className="py-4 lg:py-8 w-full flex justify-center">
-          <h1
-            id="connect-title"
-            className="text-3xl font-bold text-gray-800 dark:text-gray-200"
-          >
-            Connect With Us
-          </h1>
-        </header>
+      {/* search bar */}
+      <div className="w-auto mx-10 my-2">
+        <form onSubmit={handleSearchSubmit}>
+          <div className="flex">
+            <label
+              htmlFor="search-dropdown"
+              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+            >
+              Search Hackathons
+            </label>
 
-        <div className="container mx-auto bg-gray-50 dark:bg-gray-800 w-full">
+            {/* Dropdown Button */}
+            <button
+              id="dropdown-button"
+              type="button"
+              onClick={toggleDropdown}
+              className="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+            >
+              <span className="capitalize">{selectedField}</span>
+              <svg
+                className="w-2.5 h-2.5 ml-2.5"
+                aria-hidden="true"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
+            </button>
+
+            {/* Dropdown Menu */}
+            {dropdownOpen && (
+              <div
+                id="dropdown"
+                className="z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"
+              >
+                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => selectCategory("Name")}
+                      className="w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Name
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => selectCategory("jobtitle")}
+                      className="w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Job Title
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => selectCategory("college")}
+                      className="w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      College
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => selectCategory("GraduationYear")}
+                      className="w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Graduation Year
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => selectCategory("company")}
+                      className="w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Company
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+
+            {/* Search Input */}
+            <div className="relative w-full">
+              <input
+                type="search"
+                id="search-input"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+                className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                placeholder="Search User by name, college, job etc ..."
+                required
+              />
+              <button
+                type="submit"
+                className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                <svg
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+                <span className="sr-only">Search</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div className="flex flex-col items-center">
+        <div className="container mx-auto 0 w-full">
           <div className="justify-center grid gap-y-10 gap-x-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {allUserData.map((user) => (
+            {allUserValue.map((user) => (
               <UserCard
                 name={user?.firstName + " " + user?.lastName}
                 contry={user?.country}
@@ -98,8 +247,7 @@ export default function Connect() {
             </div>
           </div>
         )}
-      </section>
-      <Message />
+      </div>
     </>
   );
 }

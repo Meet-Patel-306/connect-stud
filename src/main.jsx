@@ -9,12 +9,15 @@ import NewsForm from "./components/News/NewsForm.jsx";
 import HackathonPage from "./components/Hackathon/HackathonPage.jsx";
 import Hackathon from "./components/Hackathon/Hackathon.jsx";
 import HackathonForm from "./components/Hackathon/RegisterHackathon/HackathonForm.jsx";
-import HackthoneBlog from "./components/Hackathon/HackathonBlog.jsx";
+import HackathonBlog from "./components/Hackathon/HackathonBlog.jsx";
+import ConnectPage from "./components/Connect/ConnectPage.jsx";
 import Connect from "./components/Connect/Connect.jsx";
 import Register from "./components/Register/Register.jsx";
+import EditProfile from "./components/Register/EditProfile.jsx";
 import Login from "./components/Login/Login.jsx";
-import Error from "./components/404/error.jsx";
+import Error from "./components/404/Error.jsx";
 import Profile from "./components/Profile/Profile.jsx";
+import ProfilePage from "./components/Profile/ProfilePage.jsx";
 import Message from "./components/Message/Message.jsx";
 import "./index.css";
 import { store } from "./app/store.js";
@@ -37,11 +40,17 @@ createRoot(document.getElementById("root")).render(
             <Route path="hackathon" element={<HackathonPage />}>
               <Route index element={<Hackathon />} />
               <Route path="post" element={<HackathonForm />} />
-              <Route path=":id" element={<HackthoneBlog />} />
+              <Route path=":id" element={<HackathonBlog />} />
             </Route>
-            <Route path="connect" element={<Connect />} />
-            <Route path="message/:id" element={<Message />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="connect" element={<ConnectPage />}>
+              <Route index element={<Connect />} />
+              <Route path=":id" element={<Message />} />
+            </Route>
+            <Route path="profile" element={<ProfilePage />}>
+              <Route index element={<Profile />} />
+              <Route path="edit" element={<EditProfile />} />
+              <Route path=":id" element={<Profile />} />
+            </Route>
             <Route path="*" element={<Error />} />
           </Route>
           <Route path="/register" element={<Register />} />

@@ -6,7 +6,7 @@ import { loginRoutes } from "../../APIs/APIRoutes.js";
 import OpenEyeSvg from "../../svgs/OpenEyeSvg.jsx";
 import CloseEyeSvg from "../../svgs/CloseEyeSvg.jsx";
 import Logo from "../../../public/connectStud.png";
-import Logo2 from "../../../public/DarkStud.png"
+import Logo2 from "../../../public/DarkStud.png";
 
 export default function Login() {
   const [visibilityEyeLogin, setVisibilityEyeLogin] = useState(false);
@@ -33,27 +33,18 @@ export default function Login() {
     <>
       <ToastContainer autoClose={3000} />
       <div className="bg-gray-50 font-[sans-serif] dark:bg-gray-900">
-  <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4 dark:bg-gray-900">
-    <div className="max-w-md w-full dark:bg-gray-900">
-      
-      {/* Light Mode Logo */}
-      <div className="flex justify-center items-center mb-6 dark:hidden">
-        <img
-          src={Logo}
-          alt="ConnectStud"
-          className="w-60"
-        />
-      </div>
+        <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4 dark:bg-gray-900">
+          <div className="max-w-md w-full dark:bg-gray-900">
+            {/* Light Mode Logo */}
+            <div className="flex justify-center items-center mb-6 dark:hidden">
+              <img src={Logo} alt="ConnectStud" className="w-60" />
+            </div>
 
-      {/* Dark Mode Logo */}
-      <div className="hidden justify-center items-center mb-6 dark:flex">
-        <img
-          src={Logo2}
-          alt="ConnectStud Dark"
-          className="w-60"
-        />
-      </div>
-            
+            {/* Dark Mode Logo */}
+            <div className="hidden justify-center items-center mb-6 dark:flex">
+              <img src={Logo2} alt="ConnectStud Dark" className="w-60" />
+            </div>
+
             <div className="p-8 rounded-2xl bg-white shadow dark:bg-gray-800">
               <h2 className="text-gray-800 text-center text-2xl font-bold dark:text-white">
                 Login
@@ -149,6 +140,15 @@ export default function Login() {
                     <span>Login with Google</span>
                   </a>
                 </div>
+                <p class="text-slate-800 text-sm !mt-6 text-center">
+                  Don't have an account?{" "}
+                  <a
+                    href="/register"
+                    class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold"
+                  >
+                    Register here
+                  </a>
+                </p>
               </form>
             </div>
           </div>

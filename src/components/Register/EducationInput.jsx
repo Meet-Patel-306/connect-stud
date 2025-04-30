@@ -3,11 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRegisterData } from "../../features/registerDataSlice.js";
 
 export default function EducationInput() {
+  const registerData = useSelector((state) => state.registerData);
+
   const [startYearValue, setStartYearValue] = useState("");
   const [endYearValue, setEndYearValue] = useState("");
   const [collegeValue, setCollegeValue] = useState("");
   const [courseValue, setCourseValue] = useState("");
-  const [colleges, setColleges] = useState([]);
+  const [colleges, setColleges] = useState(registerData?.colleges || []);
+
+  useEffect(() => {
+    if (registerData.colleges && registerData.colleges.length > 0) {
+      setJobs(registerData.colleges);
+    }
+  }, [registerData?.colleges]);
 
   const dispatch = useDispatch();
   useEffect(() => {

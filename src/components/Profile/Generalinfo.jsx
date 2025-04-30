@@ -52,9 +52,11 @@ export default function Generalinfo({
           </div>
           {/* name and work name */}
           <div className="my-11">
-            <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-md dark:bg-blue-900 dark:text-blue-300">
-              {firstName}
-            </span>
+            {jobtitle && (
+              <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-md dark:bg-blue-900 dark:text-blue-300">
+                {jobtitle}
+              </span>
+            )}
             <h1 className="font-bold text-2xl text-gray-900 dark:text-white">
               meet
             </h1>
@@ -81,7 +83,7 @@ export default function Generalinfo({
             <input
               className="profile-input-tag"
               type="text"
-              value={dateOfBirth}
+              value={dateOfBirth.split("T")[0]}
               readOnly
             />
           </div>

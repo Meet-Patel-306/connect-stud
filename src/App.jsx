@@ -5,7 +5,7 @@ import { profileAuthRoutes } from "./APIs/APIRoutes";
 import { useSelector, useDispatch } from "react-redux";
 import { setUserData } from "./features/userDataSlice";
 import axios from "axios";
-import Error404 from "./components/404/Error.jsx"
+import Error404 from "./components/404/Error.jsx";
 function App() {
   const userData = useSelector((state) => state.userData?._id);
   const dispatch = useDispatch();
@@ -31,12 +31,11 @@ function App() {
       console.log(userData);
       fetchUser();
     }
-  }, [userData]);
+  }, []);
   return (
     <>
       <Navbar />
       <Outlet />
-      
     </>
   );
 }
