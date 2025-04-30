@@ -87,7 +87,7 @@ export default function SocialMediaInput() {
             htmlFor="portfolio"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Portfolio Websute
+            Portfolio Website
           </label>
           <input
             type="text"

@@ -34,10 +34,10 @@ export default function Register() {
         registerData
       );
       setStep(2);
-      console.log(res.data);
+      // console.log(res.data);
       toast.done("OTP sent to your email.");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err.response?.data?.message || "Failed to send OTP.");
     }
   };

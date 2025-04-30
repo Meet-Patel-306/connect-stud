@@ -68,7 +68,7 @@ const oneNews = async (req, res) => {
     }
     res.status(200).json({ message: newsInfo });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json({ message: "Something is wrong." });
   }
 };

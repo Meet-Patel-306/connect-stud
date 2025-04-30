@@ -75,6 +75,7 @@ export default function NewsBlog() {
                     className="w-16 h-16 rounded-full"
                     src={news.ownerImage}
                     alt="Profile Picture"
+                    loading="lazy"
                   />
                   <div>
                     <a

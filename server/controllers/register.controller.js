@@ -3,62 +3,15 @@ const imagekit = require("../config/imagekit.config");
 const sendOTPViaEmail = require("../utils/sendOTPMail.js");
 const Otp = require("../Model/otp.model");
 
-const registerUser = async (req, res) => {
-  try {
-    const userData = JSON.parse(req.body.registerFormData);
-
-    // Check if a user with the given email already exists
-    const existingUser = await User.findOne({ email: userData.email });
-    if (existingUser) {
-      return res
-        .status(400)
-        .json({ message: "User already exists with this email." });
-    }
-    // Generate a unique username from the email
-    const userUserName = userData.email.split("@")[0];
-    let existingUsername = await User.findOne({ username: userUserName });
-
-    if (existingUsername) {
-      userUserName += Math.floor(Math.random() * 10000);
-    }
-
-    const password = userData.password;
-    delete userData.password;
-    let imageURL = "";
-    if (req.file && req.file.buffer) {
-      const image = await imagekit.upload({
-        file: req.file.buffer,
-        fileName: req.file.originalname + userUserName,
-      });
-      imageURL = image.url;
-    }
-    // Create a new user instance
-    const newUser = new User({
-      username: userUserName,
-      ownerImage: imageURL,
-      ...userData,
-    });
-    // Register the user (handles password hashing)
-    await User.register(newUser, password);
-    console.log("User registered successfully.");
-    res.status(201).json({ message: "Register Successfully" });
-  } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ message: err?.message || "Error registering user." });
-  }
-};
-
 const sendOTPForRegistration = async (req, res) => {
   try {
-    console.log(req.body); // Check if the form data is being received
+    // console.log(req.body); // Check if the form data is being received
 
     // Parse the JSON data in the "registerFormData" field
     const userData = req.body;
     // const userData = JSON.parse(req.body.registerFormData);
-    console.log(userData);
-    console.log(userData.email);
+    // console.log(userData);
+    // console.log(userData.email);
     const existingUser = await User.findOne({ email: userData.email });
     if (existingUser) {
       return res
@@ -136,7 +89,6 @@ const verifyAndRegisterUser = async (req, res) => {
 };
 
 module.exports = {
-  registerUser,
   sendOTPForRegistration,
   verifyAndRegisterUser,
 };

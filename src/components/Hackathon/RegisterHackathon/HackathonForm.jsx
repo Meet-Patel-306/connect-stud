@@ -43,9 +43,17 @@ export default function HackathonForm() {
       toast.error(err.response.data.message);
     }
   };
+  const handleCloseForm = () => {
+    navigate("/");
+  };
   return (
     <>
       <form className="mx-5 md:mx-20 lg:mx-72 my-5 bg-white shadow dark:bg-gray-800 p-5 rounded-lg">
+        <div className="flex justify-end items-center ml-3">
+          <button type="button" onClick={handleCloseForm}>
+            <i className="fa-solid fa-xmark"></i>
+          </button>
+        </div>
         <HackathonBasicInput />
         <div className="mb-4">
           <label className="block text-sm font-semibold text-gray-800 dark:text-gray-200">

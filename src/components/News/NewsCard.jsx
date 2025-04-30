@@ -46,6 +46,7 @@ export default function NewsCard({
                   <div className="flex items-center gap-3">
                     <img
                       src={ownerImage}
+                      loading="lazy"
                       alt="Avatar"
                       className="w-10 h-10 rounded-full"
                     />

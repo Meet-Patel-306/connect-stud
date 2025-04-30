@@ -27,7 +27,7 @@ export default function Connect() {
           `${allUsersDataRoutes}?page=${page}&limit=30`,
           { withCredentials: true }
         );
-        console.log("res: ", res);
+        // console.log("res: ", res);
         if (res.data.users.length === 0) {
           setHasMore(false);
         } else {
@@ -39,9 +39,9 @@ export default function Connect() {
       }
     };
     setLoading(false);
-    console.log("hello");
+    // console.log("hello");
     if (hasMore) {
-      console.log("api call");
+      // console.log("api call");
       fetchUsers();
     }
   }, [page]);
@@ -70,7 +70,7 @@ export default function Connect() {
       // console.log("Results:", res.data);
       setAllUserValue(res.data);
     } catch (error) {
-      console.error("Error fetching hackathons:", error);
+      // console.error("Error fetching hackathons:", error);
     }
     setLoading(false);
   };
@@ -81,6 +81,7 @@ export default function Connect() {
     };
     getAllUserValue();
   }, [allUserData]);
+  const userId = useSelector((state) => state.userData?._id);
   // console.log("all user: ", allUserData);
   return (
     <>
@@ -213,16 +214,18 @@ export default function Connect() {
       <div className="flex flex-col items-center">
         <div className="container mx-auto 0 w-full">
           <div className="justify-center grid gap-y-10 gap-x-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {allUserValue.map((user) => (
-              <UserCard
-                name={user?.firstName + " " + user?.lastName}
-                contry={user?.country}
-                id={user?._id}
-                job={user?.jobtitle}
-                profileImage={user?.ownerImage}
-                key={user?._id}
-              />
-            ))}
+            {allUserValue
+              .filter((user) => user?._id !== userId) // Filter out the user with matching ID
+              .map((user) => (
+                <UserCard
+                  key={user?._id}
+                  name={`${user?.firstName} ${user?.lastName}`}
+                  contry={user?.country}
+                  id={user?._id}
+                  job={user?.jobtitle}
+                  profileImage={user?.ownerImage}
+                />
+              ))}
           </div>
         </div>
         {Loading && hasMore && (

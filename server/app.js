@@ -36,7 +36,7 @@ app.use(
 
 //.env config
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
-console.log(process.env.MONGO_URL);
+// console.log(process.env.MONGO_URL);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -76,7 +76,7 @@ passport.use(
           $or: [{ googleId: profile.id }, { email: profile.emails[0].value }],
         });
 
-        console.log(profile);
+        // console.log(profile);
         if (!user) {
           user = await User.create({
             googleId: profile.id,
@@ -102,8 +102,8 @@ mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("connect to mongodb"))
   .catch((err) => {
-    console.log(err);
-    console.log("error");
+    // console.log(err);
+    // console.log("error");
   });
 
 app.get("/", function (req, res) {
@@ -124,11 +124,11 @@ app.use("/api/news", newsRoutes);
 app.use("/api/messages", messageRoutes);
 // Socket.IO logic
 io.on("connection", (socket) => {
-  console.log("Socket connected:", socket.id);
+  // console.log("Socket connected:", socket.id);
   // Join room with user's ID (client should send userId after connecting)
   socket.on("join", (userId) => {
     socket.join(userId);
-    console.log(`User ${userId} joined room`);
+    // console.log(`User ${userId} joined room`);
   });
   // Handle incoming messages
   socket.on("sendMessage", async (data) => {
@@ -139,15 +139,15 @@ io.on("connection", (socket) => {
 
     try {
       await newMessage.save();
-      console.log("Message saved");
+      // console.log("Message saved");
       // Send only to the receiver's room
       io.to(data.receiver).emit("receiveMessage", newMessage);
     } catch (err) {
-      console.error("Failed to save message:", err);
+      // console.error("Failed to save message:", err);
     }
   });
   socket.on("disconnect", () => {
-    console.log("Socket disconnected:", socket.id);
+    // console.log("Socket disconnected:", socket.id);
   });
 });
 

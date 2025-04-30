@@ -58,7 +58,7 @@ export default function Generalinfo({
               </span>
             )}
             <h1 className="font-bold text-2xl text-gray-900 dark:text-white">
-              meet
+              {firstName}
             </h1>
             <h3 className="font-normal mt-2 text-xl dark:text-gray-400">
               {jobtitle}
@@ -83,7 +83,7 @@ export default function Generalinfo({
             <input
               className="profile-input-tag"
               type="text"
-              value={dateOfBirth.split("T")[0]}
+              value={dateOfBirth?.split("T")[0]}
               readOnly
             />
           </div>

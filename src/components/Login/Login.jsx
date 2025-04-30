@@ -37,12 +37,20 @@ export default function Login() {
           <div className="max-w-md w-full dark:bg-gray-900">
             {/* Light Mode Logo */}
             <div className="flex justify-center items-center mb-6 dark:hidden">
-              <img src={Logo} alt="ConnectStud" className="w-60" />
+              <img
+                src={"/all_logos/03a.svg"}
+                alt="ConnectStud"
+                className="w-60"
+              />
             </div>
 
             {/* Dark Mode Logo */}
             <div className="hidden justify-center items-center mb-6 dark:flex">
-              <img src={Logo2} alt="ConnectStud Dark" className="w-60" />
+              <img
+                src={"/dark/Z3.svg"}
+                alt="ConnectStud Dark"
+                className="w-60"
+              />
             </div>
 
             <div className="p-8 rounded-2xl bg-white shadow dark:bg-gray-800">
@@ -140,11 +148,11 @@ export default function Login() {
                     <span>Login with Google</span>
                   </a>
                 </div>
-                <p class="text-slate-800 text-sm !mt-6 text-center">
+                <p className="text-slate-800 text-sm !mt-6 text-center dark:text-white">
                   Don't have an account?{" "}
                   <a
                     href="/register"
-                    class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold"
+                    className="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold"
                   >
                     Register here
                   </a>

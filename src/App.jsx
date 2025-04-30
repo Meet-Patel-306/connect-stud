@@ -13,11 +13,11 @@ function App() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        console.log("navbar api call");
+        // console.log("navbar api call");
         const res = await axios.get(profileAuthRoutes, {
           withCredentials: true,
         });
-        console.log(res.data);
+        // console.log(res.data);
         dispatch(setUserData(res.data));
       } catch (err) {
         if (err.response?.status === 401) {
@@ -28,7 +28,7 @@ function App() {
       }
     };
     if (userData == null) {
-      console.log(userData);
+      // console.log(userData);
       fetchUser();
     }
   }, []);

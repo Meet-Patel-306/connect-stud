@@ -42,7 +42,7 @@ function Navbar() {
       dispatch(clearUserData());
       navigate("/login");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
   return (
@@ -54,13 +54,15 @@ function Navbar() {
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
-              src="../../public/icon.svg"
-              className="h-8"
+              src={"/all_logos/03a.svg"}
+              className="h-8 dark:hidden flex"
               alt="Flowbite Logo"
             />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Flowbite
-            </span>
+            <img
+              src={"/dark/Z3.svg"}
+              className="h-8 dark:flex hidden"
+              alt="Flowbite Logo"
+            />
           </a>
           <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             {/* drop down menu */}
