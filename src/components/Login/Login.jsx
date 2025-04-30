@@ -5,13 +5,12 @@ import { ToastContainer, toast } from "react-toastify";
 import { loginRoutes } from "../../APIs/APIRoutes.js";
 import OpenEyeSvg from "../../svgs/OpenEyeSvg.jsx";
 import CloseEyeSvg from "../../svgs/CloseEyeSvg.jsx";
-import Logo from "../../../public/connectStud.png";
-import Logo2 from "../../../public/DarkStud.png";
 
 export default function Login() {
   const [visibilityEyeLogin, setVisibilityEyeLogin] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const apiURL = import.meta.env.VITE_HOST_BACKEND;
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -136,7 +135,7 @@ export default function Login() {
                 {/* Google login */}
                 <div className="flex items-center justify-center dark:bg-gray-800">
                   <a
-                    href="http://localhost:3000/auth/google"
+                    href={`${apiURL}/auth/google`}
                     className="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
                   >
                     <img
