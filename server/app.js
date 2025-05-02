@@ -20,6 +20,7 @@ const newsRoutes = require("./routes/newsRoutes.js");
 const messageRoutes = require("./routes/messageRoutes.js");
 const path = require("path");
 const app = express();
+app.set('trust proxy', 1);
 app.use(methodOverride("_method"));
 
 const cors = require("cors");
