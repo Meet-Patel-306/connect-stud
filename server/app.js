@@ -20,7 +20,7 @@ const newsRoutes = require("./routes/newsRoutes.js");
 const messageRoutes = require("./routes/messageRoutes.js");
 const path = require("path");
 const app = express();
-app.set('trust proxy', 1);
+app.set("trust proxy", 1);
 app.use(methodOverride("_method"));
 
 const cors = require("cors");
@@ -52,8 +52,9 @@ app.use(
     }),
     cookie: {
       httpOnly: true,
-      secure: false,
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 day
+      secure: true,
+      sameSite: "none",
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 day
     },
   })
 );
