@@ -93,7 +93,7 @@ export default function Message() {
     const fetchMessages = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/messages/${userId}/${id}`
+          `${backendURL}/api/messages/${userId}/${id}`
         );
         console.log("Previous messages:", res.data);
         // setChats((pre) => [...pre, ...res.data]);

@@ -10,7 +10,7 @@ export default function Receiver({ msg, timestamp, name, receiverImage }) {
           />
           <div className="grid">
             <h5 className="text-gray-900 text-sm font-semibold leading-snug pb-1 dark:text-white">
-              Shanay cruz
+              {name}
             </h5>
             <div className="w-max grid">
               <div className="px-3.5 py-2 bg-gray-100 rounded justify-start  items-center gap-3 inline-flex">
