@@ -7,6 +7,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const http = require("http");
 const { Server } = require("socket.io");
+const MongoStore = require("connect-mongo");
 
 const User = require("./Model/user.model.js");
 const Message = require("./Model/message.model.js");
@@ -45,10 +46,13 @@ app.use(
     secret: "meetpatel",
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URL,
+    }),
     cookie: {
       httpOnly: true,
       secure: false,
-      maxAge: 1000 * 60 * 60 * 24, // 1 day
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 day
     },
   })
 );
