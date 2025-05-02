@@ -10,6 +10,7 @@ import { host } from "../../APIs/APIRoutes";
 import { setAllUserData } from "../../features/allUserDataSlice";
 
 export default function Message() {
+  const backendURL = import.meta.env.VITE_HOST_BACKEND;
   const dispatch = useDispatch();
   const socketRef = useRef(null);
   const { id } = useParams();
@@ -73,7 +74,10 @@ export default function Message() {
   useEffect(() => {
     if (!userId) return;
     console.log("Creating socket connection");
-    socketRef.current = io("http://localhost:3000");
+    socketRef.current = io(backendURL, {
+      withCredentials: true,
+      transports: ["websocket"],
+    });
 
     // Join the user’s personal room
     socketRef.current.emit("join", userId);
